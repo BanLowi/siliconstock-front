@@ -11,7 +11,7 @@ export default function SingleCard({ todo }) {
           alt={todo.name}
         />
         <div className="card-body">
-          <h5 className="card-title">{todo.name}</h5>
+          <h5 className="card-title">{todo.product_name}</h5>
           <p className="card-text">{todo.description}</p>
           <span>{todo.price}</span>
           <p>{todo.technicalSpecs}</p>
