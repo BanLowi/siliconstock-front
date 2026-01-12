@@ -13,7 +13,7 @@ export default function SingleCard({ todo }) {
           <span>{todo.price}</span>
           <p>{todo.technicalSpecs}</p>
           <a href="#" className="btn btn-primary">
-            Go somewhere
+            Dettagli
           </a>
         </div>
       </div>
