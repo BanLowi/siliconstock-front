@@ -15,7 +15,7 @@ export default function SingleCard({ todo }) {
           <p className="card-text">{todo.description}</p>
           <span>{todo.price}</span>
           <p>{todo.technicalSpecs}</p>
-          <Link to={`/products/${todo.slug}`} className="btn btn-primary">
+          <Link to={`/products/${todo.product_slug}`} className="btn btn-primary">
             Go somewhere
           </Link>
         </div>
