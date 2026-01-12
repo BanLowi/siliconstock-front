@@ -14,7 +14,6 @@ export default function DetailPage() {
   }
 
   useEffect(fetchTodos, []);
-  console.log(todos);
 
   return (
     <>
