@@ -18,8 +18,8 @@ export default function Products() {
       <h1 className="text-uppercase my-3">products</h1>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6">
         {todos.map((item) => (
-          <div className="col">
-            <SingleCard key={item.id} todo={item} />
+          <div key={item.id} className="col">
+            <SingleCard todo={item} />
           </div>
         ))}
       </div>
