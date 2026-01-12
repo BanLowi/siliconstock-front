@@ -1,7 +1,10 @@
+import { Link } from "react-router";
+
 export default function SingleCard({ todo }) {
+
   return (
     <>
-      <div className="card">
+      <div className="card h-100">
         <img
           src={`http://localhost:3000/${todo.img}`}
           className="card-img-top"
@@ -12,9 +15,9 @@ export default function SingleCard({ todo }) {
           <p className="card-text">{todo.description}</p>
           <span>{todo.price}</span>
           <p>{todo.technicalSpecs}</p>
-          <a href="#" className="btn btn-primary">
+          <Link to={`/products/${todo.slug}`} className="btn btn-primary">
             Go somewhere
-          </a>
+          </Link>
         </div>
       </div>
     </>
