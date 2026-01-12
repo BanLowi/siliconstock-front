@@ -1,6 +1,6 @@
 export default function Kart() {
 
     return (
-        <h1>KART PAGE</h1>
+        <h1>CART PAGE</h1>
     )
 }
