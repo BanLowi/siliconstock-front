@@ -1,4 +1,4 @@
-export default function Kart() {
+export default function Cart() {
 
     return (
         <h1>CART PAGE</h1>
