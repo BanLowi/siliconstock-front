@@ -168,6 +168,7 @@ h1 {
   padding: 16px;
 }
 
+
 /* body */
 .card-body {
   padding: 16px;
@@ -180,6 +181,9 @@ h1 {
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-text {
