@@ -17,12 +17,12 @@ function ProductsProvider({ children }) {
 
 
     return (
-        <MoviesContext.Provider
+        <ProductsContext.Provider
             value={{
 
             }}>
             {children}
-        </MoviesContext.Provider>
+        </ProductsContext.Provider>
     )
 }
 
