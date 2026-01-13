@@ -1,24 +1,39 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import SingleCard from "../components/SingleCard";
 
 export default function DetailPage() {
   const { slug } = useParams();
-  const [todos, setTodos] = useState([]);
+  const [product, setProduct] = useState([]);
 
-  function fetchTodos() {
+  function fetchProduct() {
     axios
       .get(`http://localhost:3000/api/products/${slug}`)
-      .then((res) => setTodos(res.data));
+      .then((res) => setProduct(res.data));
   }
 
-  useEffect(fetchTodos, []);
-  console.log(todos);
+  useEffect(fetchProduct, []);
+  console.log(product);
 
   return (
     <>
-      <SingleCard key={todos.id} todo={todos} />
+      <div className="card flex-row detail-card">
+        <div className="detail-image">
+          <img src={`http://localhost:3000/${product.img}`} alt="product image" />
+        </div>
+        <div className="d-flex flex-column justify-content-around details">
+          <h5 className="title">{product.name}</h5>
+          <p className="description">{product.description}</p>
+
+          <span>{product.price}€</span>
+          <Link to={'/cart'} className="btn btn-primary">
+            Aggiungi al carrello
+          </Link>
+
+          <p>specifiche tecniche: {product.technical_specs}</p>
+        </div>
+      </div>
     </>
   );
 }

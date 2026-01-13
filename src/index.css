@@ -14,7 +14,6 @@ body {
   background-position: center top;
 }
 
-
 /* navbar */
 .navbar {
   display: flex;
@@ -220,4 +219,44 @@ h1 {
 
 .card-body .btn:hover {
   background-color: #084e77;
+}
+
+/*Detail page*/
+
+.detail-card {
+  padding-right: 2rem;
+
+  .detail-image {
+    min-height: 70vh;
+    width: 50%;
+
+
+    img {
+      padding: 10rem 1rem 0 1rem;
+      width: 100%;
+      height: 50vh;
+      object-fit: contain;
+    }
+  }
+
+  .details {
+    width: 50%;
+
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .description {
+    text-align: justify;
+  }
+
+  span {
+    font-size: 2rem;
+  }
+
+  .btn {
+    width: 40%;
+  }
 }
