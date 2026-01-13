@@ -4,7 +4,7 @@ export default function SingleCard({ todo }) {
 
   return (
     <>
-      <div className="card h-100">
+      <div className="card card_hover h-100">
         <div>
           <img
             src={`http://localhost:3000/${todo.img}`}

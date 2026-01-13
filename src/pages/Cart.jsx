@@ -1,6 +1,6 @@
 export default function Cart() {
 
     return (
-        <h1>CART PAGE</h1>
+        <h1 className="text-primary text-center">CART PAGE</h1>
     )
 }

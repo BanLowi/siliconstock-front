@@ -5,6 +5,7 @@ const ProductsContext = createContext()
 
 function ProductsProvider({ children }) {
 
+    const [loading, setLoading] = useState(true)
 
     //Set loader
     function showLoader() {
@@ -19,7 +20,7 @@ function ProductsProvider({ children }) {
     return (
         <ProductsContext.Provider
             value={{
-
+                loading, setLoading
             }}>
             {children}
         </ProductsContext.Provider>
