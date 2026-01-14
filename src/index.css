@@ -126,11 +126,11 @@ h1 {
 /* hero*/
 .hero-image {
   width: 100vw;
-  height: 500px;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  background-image: url("/hero.png");
-  background-size: contain;
+  position: relative;
+  margin-inline: calc(50% - 50vw);
+  height: 600px;
+  background-image: url("/fotor-2026011412329.png");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
