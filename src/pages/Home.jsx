@@ -4,6 +4,7 @@ import SingleCard from "../components/SingleCard";
 import { Quantum } from 'ldrs/react';
 import 'ldrs/react/Quantum.css';
 import { useProducts } from "../contexts/ProductsContext";
+import Chatbot from "../components/Chatbot";
 
 
 
@@ -51,6 +52,9 @@ export default function Home() {
                             ))}
                         </div>
                     </section>
+                    <Chatbot 
+                    products={products}
+                    />
                 </div>}
         </>
     );
