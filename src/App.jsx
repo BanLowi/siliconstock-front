@@ -5,6 +5,7 @@ import Products from "./pages/Products";
 import DetailPage from "./pages/DetailPage";
 import Cart from "./pages/Cart";
 import { ProductsProvider } from "./contexts/ProductsContext";
+import { CartProvider } from "./contexts/CartContext";
 
 
 
