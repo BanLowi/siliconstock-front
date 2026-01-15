@@ -22,19 +22,21 @@ export default function App() {
 
 
   return (
-    <ProductsProvider>
-      <Routes>
-        <Route element={<DefaultLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:slug" element={<DetailPage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route element={<PaymentLayout />}>
-            <Route path="/checkout" element={<CheckoutForm />} />
-            <Route path="/complete" element={<CompletePage />} />
+    <CartProvider>
+      <ProductsProvider>
+        <Routes>
+          <Route element={<DefaultLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:slug" element={<DetailPage />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route element={<PaymentLayout />}>
+              <Route path="/checkout" element={<CheckoutForm />} />
+              <Route path="/complete" element={<CompletePage />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </ProductsProvider>
+        </Routes>
+      </ProductsProvider>
+    </CartProvider>
   );
 }

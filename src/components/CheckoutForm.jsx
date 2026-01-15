@@ -4,6 +4,8 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import { useCart } from "../contexts/CartContext";
+import axios from "axios";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -11,6 +13,9 @@ export default function CheckoutForm() {
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  //toggle form show
+  const [showForm, setShowForm] = useState('user-data')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,23 +48,123 @@ export default function CheckoutForm() {
     }
 
     setIsLoading(false);
+    setShowForm('user-data')
   };
 
   const paymentElementOptions = {
     layout: "accordion"
   }
 
-  return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+  //User data form logic
 
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
-    </form>
+  const { cart } = useCart();
+
+  const [first_name, setFirstName] = useState('')
+  const [last_name, setLastName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [shipping_address, setShippingAddress] = useState('')
+  // const [discountCode, setDiscountCode] = useState('')
+
+
+
+  console.log(cart);
+
+  function saveOrder(order) {
+    axios.post('http://localhost:3000/api/orders/newOrder', { order })
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+      .finally(() => {
+        setFirstName(''),
+          setLastName(''),
+          setPhone(''),
+          setEmail(''),
+          setShippingAddress('')
+      })
+
+  }
+
+  function handleUserDataSubmit(e) {
+    e.preventDefault();
+
+    let total = 0
+
+    cart.forEach(item => {
+
+      total += Number(item.price)
+      console.log(item.price);
+
+    })
+
+    const order = {
+      first_name,
+      last_name,
+      phone,
+      email,
+      shipping_address,
+      total_amount: total,
+      products: cart,
+      discount_code_id: 2
+    }
+
+    // console.log(total);
+    // console.log(order);
+
+    saveOrder(order)
+
+    setShowForm('payment')
+
+  }
+
+  return (
+    <>
+      <div className="d-flex justify-content-center align-items-center">
+        {showForm === 'user-data' &&
+          <form onSubmit={handleUserDataSubmit}>
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label">Nome</label>
+              <input type="text" className="form-control" id="name"
+                value={first_name} onChange={e => setFirstName(e.target.value)} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="surname" className="form-label">Cognome</label>
+              <input type="text" className="form-control" id="surname"
+                value={last_name} onChange={e => setLastName(e.target.value)} />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="phone">Numero di telefono</label>
+              <input type="text" className="form-control" id="phone"
+                value={phone} onChange={e => setPhone(e.target.value)} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input type="email" className="form-control" id="email"
+                value={email} onChange={e => setEmail(e.target.value)} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="shipping-address" className="form-label">Indirizzo di spedizione</label>
+              <input type="text" className="form-control" id="shipping-address"
+                value={shipping_address} onChange={e => setShippingAddress(e.target.value)} />
+            </div>
+            {/* <div className="mb-3">
+          <label className="form-label" htmlFor="discount-code">Codice sconto</label>
+          <input type="text" className="form-control" id="discount-code" />
+        </div> */}
+            <button type="submit" className="btn btn-primary">Conferma</button>
+          </form>}
+        {showForm === 'payment' &&
+          <form id="payment-form" onSubmit={handleSubmit}>
+
+            <PaymentElement id="payment-element" options={paymentElementOptions} />
+            <button disabled={isLoading || !stripe || !elements} id="submit">
+              <span id="button-text">
+                {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+              </span>
+            </button>
+            {/* Show any error or success messages */}
+            {message && <div id="payment-message">{message}</div>}
+          </form>}
+      </div>
+    </>
   );
 }

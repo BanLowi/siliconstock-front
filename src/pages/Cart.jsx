@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { useCart } from "../contexts/CartContext"
 
 export default function Cart() {
@@ -88,13 +89,14 @@ export default function Cart() {
 
 
 
-
-                            <button
-                                className="btn btn-danger"
-                                onClick={() => removeProd(product)}
-                            >
-                                <i className="bi bi-x-lg" />
-                            </button>
+                            <div>
+                                <button
+                                    className="btn btn-danger btn-remove"
+                                    onClick={() => removeProd(product)}
+                                >
+                                    <i className="bi bi-x-lg" />
+                                </button>
+                            </div>
 
                         </div>
                     ))
@@ -107,6 +109,11 @@ export default function Cart() {
                         </h4>
                     </div>
                 )}
+
+                {cart.length > 0 &&
+                    <Link to={`/checkout`}>
+                        Procedi al checkout
+                    </Link>}
 
             </div>
 
