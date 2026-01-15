@@ -1,6 +1,30 @@
 import { Link } from "react-router";
+import { useCart } from "../contexts/CartContext";
 
 export default function SingleCard({ todo }) {
+
+  const { cart, setCart } = useCart();
+  console.log(cart);
+
+
+  function handleAddCart() {
+
+    setCart((prevProds) => {
+
+      const checkProducts = prevProds.find((item) => item.id === todo.id);
+
+      if (checkProducts) {
+
+        return prevProds.map((item) => item.id === todo.id ? { ...item, quantity: item.quantity + 1 } : item)
+
+      } else {
+
+        return [...prevProds, { ...todo, quantity: 1 }]
+
+      }
+
+    })
+  }
 
   return (
     <>
@@ -23,9 +47,9 @@ export default function SingleCard({ todo }) {
             <Link to={`/products/${todo.product_slug}`} className="btn btn-primary mb-3">
               Dettagli
             </Link>
-            <Link to={'/cart'} className="btn btn-primary">
+            <button onClick={handleAddCart} className="btn btn-primary">
               Aggiungi al carrello
-            </Link>
+            </button>
           </div>
         </div>
       </div>
