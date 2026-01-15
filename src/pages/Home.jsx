@@ -10,6 +10,7 @@ import Chatbot from "../components/Chatbot";
 
 export default function Home() {
     const [products, setProducts] = useState([]);
+    const [latestArrivals, setLatestArrivals] = useState([]);
     const [error, setError] = useState(null);
     const { loading, setLoading } = useProducts()
 
@@ -22,9 +23,24 @@ export default function Home() {
                 axios.get(`http://localhost:3000/api/products/category/${c}`)
             )
         )
+            /* mostra il primo prodotto di ogni categoria "prodotti in evidenza" */
             .then((res) => {
                 const featured = res.map((r) => r.data[0]).filter(Boolean);
                 setProducts(featured);
+
+                /* mostra l'ultimo prodotto di ogni categoria "ultimi arrivi" */
+                const latest = [];
+
+                res.forEach((r) => {
+                    const arr = r.data;
+
+                    if (arr.length > 0) {
+                        latest.push(arr[arr.length - 1]);
+                    }
+                });
+
+                setLatestArrivals(latest);
+
             })
             .catch(() => setError("error load products"))
             .finally(() => setTimeout(setLoading(false), 1000))
@@ -52,8 +68,18 @@ export default function Home() {
                             ))}
                         </div>
                     </section>
-                    <Chatbot 
-                    products={products}
+
+                    <section className="products mt-5">
+                        <h2>Ultimi arrivi</h2>
+                        <div className="card-grid">
+                            {latestArrivals.map((p) => (
+                                <SingleCard key={p.id} todo={p} />
+                            ))}
+                        </div>
+                    </section>
+
+                    <Chatbot
+                        products={products}
                     />
                 </div>}
         </>
