@@ -345,3 +345,7 @@ h1 {
     object-fit: fill;
   }
 }
+
+.text-color {
+  color: #9dd4f0;
+}

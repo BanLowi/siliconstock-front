@@ -45,7 +45,7 @@ export default function Cart() {
             <h1 className="text-primary text-center">CART PAGE</h1>
             <div className="container cart-size rounded-3 p-5">
 
-                {
+                {cart.length === 0 ? <h1 className="text-center text-color">CARRELLO VUOTO</h1> :
                     cart.map((product) => (
                         <div
                             key={product.id}
@@ -107,8 +107,6 @@ export default function Cart() {
                         </h4>
                     </div>
                 )}
-
-
 
             </div>
 
