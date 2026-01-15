@@ -328,3 +328,20 @@ h1 {
   font-size: 0.9rem;
   opacity: 0.8;
 }
+
+/* Cart */
+
+.cart-size {
+  min-height: 60vh;
+  background-color: #084e77;
+}
+
+.cart-image {
+  width: 20%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+}
