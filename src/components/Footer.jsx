@@ -27,7 +27,7 @@ export default function Footer() {
             </div>
 
             <div className="footer-bottom">
-                <i class="bi bi-c-circle"></i> {new Date().getFullYear()} SiliconStock – Tutti i diritti riservati dal GRUPPO MIGLIORE
+                <i className="bi bi-c-circle"></i> {new Date().getFullYear()} SiliconStock – Tutti i diritti riservati dal GRUPPO MIGLIORE
             </div>
         </footer>
     );

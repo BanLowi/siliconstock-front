@@ -6,6 +6,7 @@ import 'ldrs/react/Quantum.css';
 import { useProducts } from "../contexts/ProductsContext";
 
 export default function Products() {
+
   const [todos, setTodos] = useState([]);
   const { loading, setLoading } = useProducts();
 
