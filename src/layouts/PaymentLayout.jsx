@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useState, useEffect } from "react";
+import { useCart } from "../contexts/CartContext";
 
 
 
@@ -12,6 +13,7 @@ const stripePromise = loadStripe("pk_test_51Spt043QAbcI7ymjPNwEEa1ZIxziokSjfG08w
 
 export default function PaymentLayout() {
 
+    const { cart } = useCart();
 
     const [clientSecret, setClientSecret] = useState("");
 
@@ -20,7 +22,7 @@ export default function PaymentLayout() {
         fetch("http://localhost:3000/api/orders/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ items: [{ id: "xl-tshirt", amount: 3.67 }] }),
+            body: JSON.stringify({ products: cart }),
         })
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
