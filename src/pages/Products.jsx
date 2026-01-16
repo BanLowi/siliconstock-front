@@ -34,7 +34,13 @@ export default function Products() {
             color="rgba(28, 38, 48, 1)"
           />
         </div>
-        : <div>
+        : 
+        <>
+        <div>
+          inp
+        </div>
+        
+        <div>
           <h1 className="text-uppercase my-3">products</h1>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
             {todos.map((item) => (
@@ -43,7 +49,8 @@ export default function Products() {
               </div>
             ))}
           </div>
-        </div>}
+        </div>
+        </>}
 
     </div>
   );

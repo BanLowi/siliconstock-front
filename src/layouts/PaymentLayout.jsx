@@ -7,15 +7,16 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useState, useEffect } from "react";
 import { useCart } from "../contexts/CartContext";
 
+const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY
 
-
-const stripePromise = loadStripe("pk_test_51Spt043QAbcI7ymjPNwEEa1ZIxziokSjfG08wX818CVLIsPKBrzR8PQDhq8THoMlDPFl7GnEJMMRxWUbz2wDUDwP00F6BU5lPO");
+const stripePromise = loadStripe(stripeKey);
 
 export default function PaymentLayout() {
 
     const { cart } = useCart();
 
-    const [clientSecret, setClientSecret] = useState("");
+
+    const [clientSecret, setClientSecret] = useState();
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -25,7 +26,13 @@ export default function PaymentLayout() {
             body: JSON.stringify({ products: cart }),
         })
             .then((res) => res.json())
-            .then((data) => setClientSecret(data.clientSecret));
+            .then((data) => {
+                setClientSecret(data.clientSecret)
+                console.log(data.clientSecret);
+
+            })
+
+            ;
     }, []);
 
     const appearance = {
