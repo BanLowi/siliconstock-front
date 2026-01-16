@@ -4,7 +4,6 @@ import { useCart } from "../contexts/CartContext";
 export default function SingleCard({ todo }) {
 
   const { cart, setCart } = useCart();
-  console.log(cart);
 
 
   function handleAddCart() {
