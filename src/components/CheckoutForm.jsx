@@ -57,7 +57,7 @@ export default function CheckoutForm() {
 
   //User data form logic
 
-  const { cart } = useCart();
+  const { cart, order, setOrder } = useCart();
 
   const [first_name, setFirstName] = useState('')
   const [last_name, setLastName] = useState('')
@@ -102,7 +102,7 @@ export default function CheckoutForm() {
 
   }
 
-  function handleUserDataSubmit(e) {
+  async function handleUserDataSubmit(e) {
     e.preventDefault();
 
     let total = 0
@@ -114,7 +114,8 @@ export default function CheckoutForm() {
 
     })
 
-    const order = {
+    const newOrder = {
+      id: Date.now(),
       first_name,
       last_name,
       phone,
@@ -125,10 +126,12 @@ export default function CheckoutForm() {
       discount_code_id: 2
     }
 
+
+    await setOrder(newOrder)
     // console.log(total);
     // console.log(order);
 
-    saveOrder(order)
+    saveOrder(newOrder)
 
 
 

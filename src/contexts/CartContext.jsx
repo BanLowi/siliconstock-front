@@ -4,6 +4,8 @@ const CartContext = createContext();
 
 function CartProvider({ children }) {
 
+    const [order, setOrder] = useState({})
+
     const [cart, setCart] = useState(() => {
 
         const savedCart = localStorage.getItem("cart")
@@ -18,7 +20,7 @@ function CartProvider({ children }) {
         <CartContext.Provider
             value={{
                 cart,
-                setCart
+                setCart, order, setOrder
             }}>
             {children}
         </CartContext.Provider>

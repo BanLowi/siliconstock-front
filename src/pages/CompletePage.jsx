@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
   useStripe,
 } from "@stripe/react-stripe-js";
+import axios from "axios";
+import { useCart } from "../contexts/CartContext";
 
 
 const SuccessIcon =
@@ -50,6 +52,8 @@ export default function CompletePage() {
   const [status, setStatus] = useState("default");
   const [intentId, setIntentId] = useState(null);
 
+  const { order } = useCart()
+
   useEffect(() => {
     if (!stripe) {
       return;
@@ -70,7 +74,13 @@ export default function CompletePage() {
 
       setStatus(paymentIntent.status);
       setIntentId(paymentIntent.id);
+
     });
+    axios.post('http://localhost:3000/api/orders/send-email', { order })
+      .then(res => console.log('email sent'))
+      .catch(err => console.log(err))
+
+
   }, [stripe]);
 
   return (
