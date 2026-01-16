@@ -86,9 +86,6 @@ export default function Cart() {
 
                             </div>
 
-
-
-
                             <div>
                                 <button
                                     className="btn btn-danger btn-remove"
