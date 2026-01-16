@@ -66,21 +66,39 @@ export default function CheckoutForm() {
   const [shipping_address, setShippingAddress] = useState('')
   // const [discountCode, setDiscountCode] = useState('')
 
+  const [formError, setFormError] = useState('')
+
 
 
   console.log(cart);
 
   function saveOrder(order) {
     axios.post('http://localhost:3000/api/orders/newOrder', { order })
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err))
-      .finally(() => {
-        setFirstName(''),
-          setLastName(''),
-          setPhone(''),
-          setEmail(''),
-          setShippingAddress('')
+      .then(res => {
+        console.log(res.data)
+        console.log(res.data.status);
+
+
+        if (res.data.status === 400) {
+          setShowForm('user-data')
+          setFormError(res.data.error)
+        } else if (res.data.request === 'received') {
+          setShowForm('payment')
+          setFormError('')
+          console.log('success');
+          setFirstName(''),
+            setLastName(''),
+            setPhone(''),
+            setEmail(''),
+            setShippingAddress('')
+
+        }
       })
+      .catch(err => {
+
+        console.log(err)
+      })
+
 
   }
 
@@ -112,7 +130,7 @@ export default function CheckoutForm() {
 
     saveOrder(order)
 
-    setShowForm('payment')
+
 
   }
 
@@ -120,38 +138,42 @@ export default function CheckoutForm() {
     <>
       <div className="d-flex justify-content-center align-items-center">
         {showForm === 'user-data' &&
-          <form onSubmit={handleUserDataSubmit}>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">Nome</label>
-              <input type="text" className="form-control" id="name"
-                value={first_name} onChange={e => setFirstName(e.target.value)} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="surname" className="form-label">Cognome</label>
-              <input type="text" className="form-control" id="surname"
-                value={last_name} onChange={e => setLastName(e.target.value)} />
-            </div>
-            <div className="mb-3">
-              <label className="form-label" htmlFor="phone">Numero di telefono</label>
-              <input type="text" className="form-control" id="phone"
-                value={phone} onChange={e => setPhone(e.target.value)} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input type="email" className="form-control" id="email"
-                value={email} onChange={e => setEmail(e.target.value)} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="shipping-address" className="form-label">Indirizzo di spedizione</label>
-              <input type="text" className="form-control" id="shipping-address"
-                value={shipping_address} onChange={e => setShippingAddress(e.target.value)} />
-            </div>
-            {/* <div className="mb-3">
+          <div>
+            <form className="user-form " onSubmit={handleUserDataSubmit}>
+              {formError !== '' && <p >{formError}</p>}
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">Nome</label>
+                <input type="text" className="form-control" id="name"
+                  value={first_name} onChange={e => setFirstName(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="surname" className="form-label">Cognome</label>
+                <input type="text" className="form-control" id="surname"
+                  value={last_name} onChange={e => setLastName(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <label className="form-label" htmlFor="phone">Numero di telefono</label>
+                <input type="text" className="form-control" id="phone"
+                  value={phone} onChange={e => setPhone(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input type="email" className="form-control" id="email"
+                  value={email} onChange={e => setEmail(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="shipping-address" className="form-label">Indirizzo di spedizione</label>
+                <input type="text" className="form-control" id="shipping-address"
+                  value={shipping_address} onChange={e => setShippingAddress(e.target.value)} />
+              </div>
+
+              {/* <div className="mb-3">
           <label className="form-label" htmlFor="discount-code">Codice sconto</label>
           <input type="text" className="form-control" id="discount-code" />
         </div> */}
-            <button type="submit" className="btn btn-primary">Conferma</button>
-          </form>}
+              <button type="submit" className="btn btn-primary">Conferma</button>
+            </form>
+          </div>}
         {showForm === 'payment' &&
           <form id="payment-form" onSubmit={handleSubmit}>
 

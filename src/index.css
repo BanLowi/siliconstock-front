@@ -602,3 +602,10 @@ td {
 .btn-search {
   width: 10%;
 }
+
+/*User data form*/
+
+.user-form {
+  margin-top: 3rem;
+  background-color: rgb(17, 141, 182);
+}
