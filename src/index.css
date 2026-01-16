@@ -595,3 +595,10 @@ td {
 .text-color {
   color: #9dd4f0;
 }
+
+
+/*Search bar*/
+
+.btn-search {
+  width: 10%;
+}

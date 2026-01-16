@@ -9,17 +9,22 @@ export default function Products() {
 
   const [todos, setTodos] = useState([]);
   const { loading, setLoading } = useProducts();
+  const [searchValue, setSearchValue] = useState('')
+  const [filter, setFilter] = useState('')
 
   function fetchTodos() {
-    setLoading(true)
+
+    console.log(filter);
+
 
     axios
-      .get("http://localhost:3000/api/products")
+      .get(`http://localhost:3000/api/products?searchValue=${searchValue}&filter=${filter}`)
       .then((res) => setTodos(res.data))
       .finally(() => setTimeout(setLoading(false), 1000))
   }
 
-  useEffect(fetchTodos, []);
+  useEffect(fetchTodos, [searchValue, filter]);
+  useEffect(() => { setLoading(true) }, [])
 
   return (
 
@@ -34,22 +39,38 @@ export default function Products() {
             color="rgba(28, 38, 48, 1)"
           />
         </div>
-        : 
+        :
         <>
-        <div>
-          inp
-        </div>
-        
-        <div>
-          <h1 className="text-uppercase my-3">products</h1>
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-            {todos.map((item) => (
-              <div key={item.id} className="col mb-3">
-                <SingleCard todo={item} />
-              </div>
-            ))}
+          <div className="d-flex justify-content-around">
+            <div className="input-group w-50">
+              <input
+                value={searchValue} onChange={e => setSearchValue(e.target.value)}
+                type="search" className="form-control w-50"
+                placeholder="Cerca" aria-label="Search"
+                aria-describedby="basic-addon2" />
+              <button class="btn btn-outline-secondary btn-search" type="button" id="button-addon2"
+                onClick={fetchTodos}>
+                <i className="bi bi-search"></i>
+              </button>
+            </div>
+            <select class="form-select w-25" aria-label="Select filter"
+              onChange={e => setFilter(e.target.value)}>
+              <option value='' >Filtra per</option>
+              <option value="asc">Prezzo crescente</option>
+              <option value="desc">Prezzo decrescente</option>
+            </select>
           </div>
-        </div>
+
+          <div>
+            <h1 className="text-uppercase my-3">products</h1>
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+              {todos.map((item) => (
+                <div key={item.id} className="col mb-3">
+                  <SingleCard todo={item} />
+                </div>
+              ))}
+            </div>
+          </div>
         </>}
 
     </div>
