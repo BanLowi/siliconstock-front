@@ -609,3 +609,109 @@ td {
   margin-top: 3rem;
   background-color: rgb(17, 141, 182);
 }
+
+/*Chat Bot */
+
+.chat-bubble {
+  display: inline-block;
+  margin: 6px 0;
+  padding: 10px 14px;
+  border-radius: 18px;
+  max-width: 78%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 6px black;
+}
+
+.chat-bubble.user {
+  background: linear-gradient(135deg, fuchsia, purple);
+  color: white;
+  align-self: flex-end;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-bubble.ai {
+  background: linear-gradient(135deg, green, lightblue);
+  color: blue;
+  align-self: flex-start;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-text {
+  font-size: 0.95rem;
+}
+
+#chat-messages {
+  height: 400px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #1C2630;
+  overflow-y: auto;
+  border: 2px solid fuchsia;
+  padding: 10px;
+  border-radius: 15px;
+  scrollbar-color: fuchsia purple;
+  scrollbar-width: none;
+}
+
+.chat-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.chat-author {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.chat-author.user {
+  color: white;
+}
+
+.chat-author.ai {
+  color: blue;
+}
+
+.chat-timestamp {
+  font-size: 0.7rem;
+  color: grey;
+}
+
+.chat-bubble.ai .chat-timestamp {
+  color: black;
+}
+
+.bi-robot::before {
+  font-size: 35px !important;
+}
+
+.chat-container {
+  width: 400px !important;
+  margin: 0;
+}
+
+.chat-card-spacing {
+  width: 100% !important;
+  margin: 1rem 3rem;
+}
+
+.chat-name {
+  color: lightblue;
+  text-shadow: 0 0 10px lightblue;
+  text-transform: uppercase;
+}
+
+.chat-select {
+  border: 2px solid fuchsia;
+}
+
+.chat-button-spacing {
+  margin: 0 0 3rem 3rem;
+  width: 80px;
+  height: 80px;
+}
