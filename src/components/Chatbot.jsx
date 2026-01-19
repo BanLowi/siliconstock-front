@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useProducts } from "../contexts/ProductsContext";
 
 export default function Chatbot({ products }) {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([])
-  const chat = []
+  const [messages, setMessages] = useState([]);
+  const { chatOpen, setChatOpen } = useProducts();
+  const chat = [];
 
   async function getResponse() {
     const response = await fetch("http://localhost:3000/api/chat", {
@@ -11,32 +13,33 @@ export default function Chatbot({ products }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: message }),
       products,
-    })
+    });
     const data = await response.json();
     console.log(data.reply);
     chat.push({
-      author: 'ai',
+      author: "ai",
       time: new Date().toLocaleTimeString(),
-      text: data.reply
-    })
-    setMessages(chat)
-    console.log(messages)
+      text: data.reply,
+    });
+    setMessages(chat);
+    console.log(messages);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     getResponse();
     chat.push({
-      author: 'user',
+      author: "user",
       time: new Date().toLocaleTimeString(),
-      text: message
-    })
+      text: message,
+    });
   }
 
   function handleChatOpen() {
-    const chatWindow = document.getElementById("chat-window");
-    if (chatWindow) {
-      chatWindow.classList.toggle("d-none");
+    if (chatOpen) {
+      setChatOpen(false)
+    } else {
+      setChatOpen(true)
     }
   }
 
@@ -44,8 +47,7 @@ export default function Chatbot({ products }) {
     <>
       <div className="fixed-bottom chat-container z-3">
         <div
-          className="card chat-card-spacing z-3 d-none mt-4 p-0"
-          id="chat-window"
+          className={`card chat-card-spacing z-3 ${chatOpen ? '' : 'd-none'} mt-4 p-0`}
         >
           <div className="card-header chat-name">
             Parla con Fabrizio, <br /> il tuo agente segreto
@@ -76,7 +78,7 @@ export default function Chatbot({ products }) {
           </div>
         </div>
 
-        <div className="d-flex justify-content-between mt-3">
+        <div className={`d-flex mt-3 ${chatOpen ? 'd-flex' : 'd-none'}`}>
           <form
             type="submit"
             className="chat-form d-flex"
@@ -92,12 +94,6 @@ export default function Chatbot({ products }) {
               }}
             />
           </form>
-          <button
-            className="btn-cloce-chat rounded-pill"
-            onClick={() => handleChatOpen()}
-          >
-            Close Chat
-          </button>
         </div>
 
         <div className="chat-button-spacing z-3">
