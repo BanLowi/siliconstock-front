@@ -38,21 +38,17 @@ export default function Chatbot({ products }) {
 
   function handleChatOpen() {
     if (chatOpen) {
-      setChatOpen(false)
+      setChatOpen(false);
     } else {
-      setChatOpen(true)
+      setChatOpen(true);
     }
-  }
-
-  function getElements() {
-
   }
 
   return (
     <>
       <div className="fixed-bottom chat-container z-3">
         <div
-          className={`card chat-card-spacing z-3 ${chatOpen ? '' : 'd-none'} mt-4 p-0`}
+          className={`card chat-card-spacing z-3 ${chatOpen ? "" : "d-none"} mt-4 p-0`}
         >
           <div className="card-header chat-name">
             Parla con Fabrizio, <br /> il tuo agente segreto
@@ -76,14 +72,17 @@ export default function Chatbot({ products }) {
                     </span>
                     <span className="chat-timestamp">{msg.time}</span>
                   </div>
-                  <div className="chat-texts" dangerouslySetInnerHTML={{__html: msg.text}}></div>
+                  <div
+                    className="chat-texts"
+                    dangerouslySetInnerHTML={{ __html: msg.text }}
+                  ></div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className={`d-flex mt-3 ${chatOpen ? 'd-flex' : 'd-none'}`}>
+        <div className={`d-flex mt-3 ${chatOpen ? "d-flex" : "d-none"}`}>
           <form
             type="submit"
             className="chat-form d-flex"
