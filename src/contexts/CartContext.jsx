@@ -4,7 +4,12 @@ const CartContext = createContext();
 
 function CartProvider({ children }) {
 
-    const [order, setOrder] = useState({})
+    const [order, setOrder] = useState(() => {
+
+        const savedOrder = localStorage.getItem("order")
+
+        return savedOrder ? JSON.parse(savedOrder) : {}
+    })
 
     const [cart, setCart] = useState(() => {
 
@@ -14,6 +19,7 @@ function CartProvider({ children }) {
     });
 
     useEffect(() => { localStorage.setItem("cart", JSON.stringify(cart)) }, [cart])
+    useEffect(() => { localStorage.setItem("order", JSON.stringify(order)) }, [order])
 
     return (
 

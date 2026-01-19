@@ -7,9 +7,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+
 );

@@ -53,6 +53,7 @@ export default function CompletePage() {
   const [intentId, setIntentId] = useState(null);
 
   const { order } = useCart()
+  const [orderData, setOrderData] = useState()
 
   useEffect(() => {
     if (!stripe) {
@@ -76,12 +77,23 @@ export default function CompletePage() {
       setIntentId(paymentIntent.id);
 
     });
-    axios.post('http://localhost:3000/api/orders/send-email', { order })
-      .then(res => console.log('email sent'))
-      .catch(err => console.log(err))
 
 
   }, [stripe]);
+
+  useEffect(() => {
+    console.log(order);
+
+    axios.post('http://localhost:3000/api/orders/send-email', { order })
+      .then(res => console.log('email sent'))
+      .catch(err => console.log(err))
+      .finally(() => {
+        setOrderData(order)
+        localStorage.removeItem("order")
+      })
+  }, [order])
+
+
 
   return (
     <div id="payment-status">

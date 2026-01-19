@@ -73,6 +73,7 @@ export default function CheckoutForm() {
   console.log(cart);
 
   function saveOrder(order) {
+    setOrder(order)
     axios.post('http://localhost:3000/api/orders/newOrder', { order })
       .then(res => {
         console.log(res.data)
@@ -102,7 +103,7 @@ export default function CheckoutForm() {
 
   }
 
-  async function handleUserDataSubmit(e) {
+  function handleUserDataSubmit(e) {
     e.preventDefault();
 
     let total = 0
@@ -127,12 +128,13 @@ export default function CheckoutForm() {
     }
 
 
-    await setOrder(newOrder)
+
     // console.log(total);
-    // console.log(order);
+    console.log(order);
 
     saveOrder(newOrder)
 
+    console.log(order);
 
 
   }
