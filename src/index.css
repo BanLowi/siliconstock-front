@@ -642,6 +642,10 @@ td {
   font-size: 0.95rem;
 }
 
+.chat-texts {
+  color: white;
+}
+
 #chat-messages {
   height: 400px !important;
   display: flex;

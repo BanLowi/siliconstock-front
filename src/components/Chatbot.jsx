@@ -6,6 +6,7 @@ export default function Chatbot({ products }) {
   const [messages, setMessages] = useState([]);
   const { chatOpen, setChatOpen } = useProducts();
   const chat = [];
+  const parser = new DOMParser();
 
   async function getResponse() {
     const response = await fetch("http://localhost:3000/api/chat", {
@@ -43,6 +44,10 @@ export default function Chatbot({ products }) {
     }
   }
 
+  function getElements() {
+
+  }
+
   return (
     <>
       <div className="fixed-bottom chat-container z-3">
@@ -71,7 +76,7 @@ export default function Chatbot({ products }) {
                     </span>
                     <span className="chat-timestamp">{msg.time}</span>
                   </div>
-                  <div className="chat-texts">{msg.text}</div>
+                  <div className="chat-texts" dangerouslySetInnerHTML={{__html: msg.text}}></div>
                 </div>
               ))}
             </div>
