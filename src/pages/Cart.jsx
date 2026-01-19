@@ -66,10 +66,10 @@ export default function Cart() {
                                     </h4>
 
                                     <button
-                                        className="btn btn-outline-light"
+                                        className="btn btn-outline-light cart-btn"
                                         onClick={() => reduceProd(product)}
                                     >
-                                        <i className="bi bi-cart-dash" />
+                                        <i className="bi bi-cart-dash cart-icon" />
                                     </button>
 
                                     <small className="text-white mx-2">
@@ -77,10 +77,10 @@ export default function Cart() {
                                     </small>
 
                                     <button
-                                        className="btn btn-outline-light"
+                                        className="btn btn-outline-light cart-btn"
                                         onClick={() => addProd(product)}
                                     >
-                                        <i className="bi bi-cart-plus" />
+                                        <i className="bi bi-cart-plus cart-icon" />
                                     </button>
                                 </div>
 

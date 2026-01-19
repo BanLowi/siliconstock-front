@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router";
 import { Quantum } from 'ldrs/react';
 import 'ldrs/react/Quantum.css';
 import { useProducts } from "../contexts/ProductsContext";
+import Chatbot from "../components/Chatbot";
 
 export default function DetailPage() {
   const { slug } = useParams();
@@ -52,7 +53,9 @@ export default function DetailPage() {
             <p>specifiche tecniche: {product.technical_specs}</p>
           </div>
         </div>}
-
+        <Chatbot 
+        products={product}
+        />
     </div>
   );
 }
