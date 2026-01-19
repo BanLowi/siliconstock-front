@@ -653,6 +653,10 @@ td {
 
 .chat-texts {
   color: white;
+
+  p {
+    color: white;
+  }
 }
 
 #chat-messages {
