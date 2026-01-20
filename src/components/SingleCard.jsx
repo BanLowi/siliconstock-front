@@ -3,27 +3,7 @@ import { useCart } from "../contexts/CartContext";
 
 export default function SingleCard({ todo }) {
 
-  const { cart, setCart } = useCart();
-
-
-  function handleAddCart() {
-
-    setCart((prevProds) => {
-
-      const checkProducts = prevProds.find((item) => item.id === todo.id);
-
-      if (checkProducts) {
-
-        return prevProds.map((item) => item.id === todo.id ? { ...item, quantity: item.quantity + 1 } : item)
-
-      } else {
-
-        return [...prevProds, { ...todo, quantity: 1 }]
-
-      }
-
-    })
-  }
+  const { addProd } = useCart();
 
   return (
     <>
@@ -46,7 +26,7 @@ export default function SingleCard({ todo }) {
             <Link to={`/products/${todo.product_slug}`} className="btn btn-primary mb-3">
               Dettagli
             </Link>
-            <button onClick={handleAddCart} className="btn btn-primary">
+            <button onClick={() => addProd(todo)} className="btn btn-primary">
               Aggiungi al carrello
             </button>
           </div>
