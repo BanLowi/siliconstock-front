@@ -3,43 +3,7 @@ import { useCart } from "../contexts/CartContext"
 
 export default function Cart() {
 
-    const { cart, setCart } = useCart();
-
-    function reduceProd(product) {
-        setCart((prevProds) => {
-            const checkProduct = prevProds.find((item) => item.id === product.id);
-
-            if (!checkProduct) {
-                return prevProds;
-            }
-
-            if (checkProduct.quantity === 1) {
-                return prevProds.filter((item) => item.id !== product.id);
-            }
-
-            return prevProds.map((item) => {
-                if (item.id === product.id) {
-                    return { ...item, quantity: item.quantity - 1 };
-                }
-                return item;
-            });
-        });
-    }
-
-    function removeProd(product) {
-
-        setCart((prevProds) => prevProds.filter((item) => item.id !== product.id))
-
-    }
-
-    function addProd(product) {
-
-        setCart((prevProds) => {
-
-            return prevProds.map((item) => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item)
-
-        })
-    }
+    const { cart, addProd, removeProd, reduceProd } = useCart();
 
     return (
         <>
@@ -62,7 +26,7 @@ export default function Cart() {
                                 <div>
 
                                     <h4 className="fw-semibold text-white mb-3">
-                                        {product.product_name}
+                                        {product.product_name || product.name}
                                     </h4>
 
                                     <button

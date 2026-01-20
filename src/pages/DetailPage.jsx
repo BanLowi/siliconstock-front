@@ -5,11 +5,13 @@ import { Quantum } from 'ldrs/react';
 import 'ldrs/react/Quantum.css';
 import { useProducts } from "../contexts/ProductsContext";
 import Chatbot from "../components/Chatbot";
+import { useCart } from "../contexts/CartContext";
 
 export default function DetailPage() {
   const { slug } = useParams();
   const { loading, setLoading } = useProducts();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
+  const { addProd } = useCart();
 
   function fetchProduct() {
     setLoading(true)
@@ -46,16 +48,16 @@ export default function DetailPage() {
             <p className="description">{product.description}</p>
 
             <span>{product.price}€</span>
-            <Link to={'/cart'} className="btn btn-primary">
+            <button onClick={() => addProd(product)} className="btn btn-primary">
               Aggiungi al carrello
-            </Link>
+            </button>
 
             <p>specifiche tecniche: {product.technical_specs}</p>
           </div>
         </div>}
-        <Chatbot 
+      <Chatbot
         products={product}
-        />
+      />
     </div>
   );
 }

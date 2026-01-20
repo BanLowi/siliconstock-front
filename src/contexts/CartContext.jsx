@@ -21,12 +21,63 @@ function CartProvider({ children }) {
     useEffect(() => { localStorage.setItem("cart", JSON.stringify(cart)) }, [cart])
     useEffect(() => { localStorage.setItem("order", JSON.stringify(order)) }, [order])
 
+    function reduceProd(product) {
+        setCart((prevProds) => {
+            const checkProduct = prevProds.find((item) => item.id === product.id);
+
+            if (!checkProduct) {
+                return prevProds;
+            }
+
+            if (checkProduct.quantity === 1) {
+                return prevProds.filter((item) => item.id !== product.id);
+            }
+
+            return prevProds.map((item) => {
+                if (item.id === product.id) {
+                    return { ...item, quantity: item.quantity - 1 };
+                }
+                return item;
+            });
+        });
+    }
+
+    function removeProd(product) {
+
+        setCart((prevProds) => prevProds.filter((item) => item.id !== product.id))
+
+    }
+
+    function addProd(product) {
+        setCart((prevProds) => {
+            const existingProduct = prevProds.find(
+                (item) => item.id === product.id
+            );
+
+            if (existingProduct) {
+                return prevProds.map((item) =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
+            }
+
+            return [...prevProds, { ...product, quantity: 1 }];
+        });
+    }
+
+
     return (
 
         <CartContext.Provider
             value={{
                 cart,
-                setCart, order, setOrder
+                setCart,
+                order,
+                setOrder,
+                addProd,
+                removeProd,
+                reduceProd
             }}>
             {children}
         </CartContext.Provider>
