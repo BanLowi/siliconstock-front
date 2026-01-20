@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router";
+import { Link, useParams, useNavigate } from "react-router";
 import { Quantum } from 'ldrs/react';
 import 'ldrs/react/Quantum.css';
 import { useProducts } from "../contexts/ProductsContext";
@@ -12,6 +12,7 @@ export default function DetailPage() {
   const { loading, setLoading } = useProducts();
   const [product, setProduct] = useState({});
   const { addProd } = useCart();
+  const navigate = useNavigate();
 
   function fetchProduct() {
     setLoading(true)
@@ -23,11 +24,14 @@ export default function DetailPage() {
   }
 
   useEffect(fetchProduct, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   console.log(product);
 
   return (
     <div className="container mt-5">
-
       {loading
         ?
         <div className="loader_div">
@@ -58,6 +62,17 @@ export default function DetailPage() {
       <Chatbot
         products={product}
       />
+      {/* bottone per tornare indietro */}
+      <div className="mt-4">
+        <button
+          type="button"
+          className="btn btn-primary btn-sm px-2"
+          onClick={() => navigate(-1)}
+        >
+          <i class="bi bi-arrow-bar-left"></i> Torna indietro
+        </button>
+      </div>
     </div>
+
   );
 }
