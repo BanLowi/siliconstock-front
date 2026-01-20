@@ -6,6 +6,7 @@ import DetailPage from "./pages/DetailPage";
 import Cart from "./pages/Cart";
 import { ProductsProvider } from "./contexts/ProductsContext";
 import { CartProvider } from "./contexts/CartContext";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 
@@ -24,6 +25,7 @@ export default function App() {
   return (
     <CartProvider>
       <ProductsProvider>
+        <ScrollToTop />
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<Home />} />

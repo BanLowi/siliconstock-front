@@ -9,6 +9,7 @@ export default function CheckoutPage() {
     console.log(cart);
 
 
+
     if (!clientSecret) return null; // oppure loader
 
     return (
