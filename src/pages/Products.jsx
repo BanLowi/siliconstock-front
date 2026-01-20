@@ -64,6 +64,10 @@ export default function Products() {
               <option value='' >Filtra per</option>
               <option value="asc">Prezzo crescente</option>
               <option value="desc">Prezzo decrescente</option>
+              <option value="name-asc">Per nome A-Z</option>
+              <option value="name-desc">Per nome Z-A</option>
+              <option value="new">Più recente</option>
+              <option value="old">Meno Recente</option>
             </select>
           </div>
 
