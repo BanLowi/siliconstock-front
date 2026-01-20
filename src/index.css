@@ -301,6 +301,12 @@ h1 {
   }
 }
 
+.btn-custom {
+
+  width: 10vw;
+  margin-left: 0rem;
+}
+
 /* Footer */
 .footer {
   background-color: #1c2630;

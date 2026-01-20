@@ -143,33 +143,45 @@ export default function CheckoutForm() {
 
   return (
     <>
+      {/* button to turn prevous page */}
+      <div className="mt-4 ms-5 d-inline-block">
+        <button
+          type="button"
+          className="btn btn-primary btn-sm px-2"
+          onClick={() => navigate(-1)}
+        >
+          <i class="bi bi-arrow-bar-left"></i> Torna indietro
+        </button>
+      </div>
+
       <div className="d-flex justify-content-center align-items-center">
         {showForm === 'user-data' &&
           <div>
             <form className="user-form " onSubmit={handleUserDataSubmit}>
+              <span>I campi che presentano * sono obbligatori</span>
               {formError !== '' && <p >{formError}</p>}
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">Nome</label>
+              <div className="mb-3 mt-4">
+                <label htmlFor="name" className="form-label">Nome *</label>
                 <input type="text" className="form-control" id="name"
                   value={first_name} onChange={e => setFirstName(e.target.value)} />
               </div>
               <div className="mb-3">
-                <label htmlFor="surname" className="form-label">Cognome</label>
+                <label htmlFor="surname" className="form-label">Cognome *</label>
                 <input type="text" className="form-control" id="surname"
                   value={last_name} onChange={e => setLastName(e.target.value)} />
               </div>
               <div className="mb-3">
-                <label className="form-label" htmlFor="phone">Numero di telefono</label>
+                <label className="form-label" htmlFor="phone">Numero di telefono *</label>
                 <input type="text" className="form-control" id="phone"
                   value={phone} onChange={e => setPhone(e.target.value)} />
               </div>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email</label>
+                <label htmlFor="email" className="form-label">Email *</label>
                 <input type="email" className="form-control" id="email"
                   value={email} onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="mb-3">
-                <label htmlFor="shipping-address" className="form-label">Indirizzo di spedizione</label>
+                <label htmlFor="shipping-address" className="form-label">Indirizzo di spedizione *</label>
                 <input type="text" className="form-control" id="shipping-address"
                   value={shipping_address} onChange={e => setShippingAddress(e.target.value)} />
               </div>
@@ -229,16 +241,7 @@ export default function CheckoutForm() {
         ))}
       </div>
 
-      {/* button to turn prevous page */}
-      <div className="mt-4 d-inline-block">
-        <button
-          type="button"
-          className="btn btn-primary btn-sm px-2"
-          onClick={() => navigate(-1)}
-        >
-          <i class="bi bi-arrow-bar-left"></i> Torna indietro
-        </button>
-      </div>
+
 
     </>
   );
