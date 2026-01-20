@@ -19,7 +19,11 @@ export default function DetailPage() {
 
     axios
       .get(`http://localhost:3000/api/products/${slug}`)
-      .then((res) => setProduct(res.data))
+      .then((res) => {
+        setProduct(res.data)
+        console.log(res.data);
+
+      })
       .finally(() => setTimeout(setLoading(false), 1000))
   }
 
@@ -48,7 +52,7 @@ export default function DetailPage() {
             <img src={`http://localhost:3000/${product.img}`} alt="product image" />
           </div>
           <div className="d-flex flex-column justify-content-around details">
-            <h5 className="title">{product.name}</h5>
+            <h5 className="title">{product.product_name}</h5>
             <p className="description">{product.description}</p>
 
             <span>{product.price}€</span>
