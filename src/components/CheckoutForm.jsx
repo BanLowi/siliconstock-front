@@ -6,10 +6,12 @@ import {
 } from "@stripe/react-stripe-js";
 import { useCart } from "../contexts/CartContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate();
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -192,6 +194,18 @@ export default function CheckoutForm() {
             {message && <div id="payment-message">{message}</div>}
           </form>}
       </div>
+
+      {/* button to turn prevous page */}
+      <div className="mt-4 d-inline-block">
+        <button
+          type="button"
+          className="btn btn-primary btn-sm px-2"
+          onClick={() => navigate(-1)}
+        >
+          <i class="bi bi-arrow-bar-left"></i> Torna indietro
+        </button>
+      </div>
+
     </>
   );
 }
