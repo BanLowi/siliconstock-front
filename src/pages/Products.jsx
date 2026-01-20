@@ -5,18 +5,23 @@ import { Quantum } from 'ldrs/react';
 import 'ldrs/react/Quantum.css';
 import { useProducts } from "../contexts/ProductsContext";
 import Chatbot from "../components/Chatbot";
+import { useSearchParams } from "react-router";
 
 export default function Products() {
 
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const [todos, setTodos] = useState([]);
   const { loading, setLoading } = useProducts();
-  const [searchValue, setSearchValue] = useState('')
-  const [filter, setFilter] = useState('')
+  const [searchValue, setSearchValue] = useState(searchParams?.get('searchValue') || '')
+  const [filter, setFilter] = useState(searchParams?.get('filter') || '')
+
 
   function fetchTodos() {
 
     console.log(filter);
 
+    setSearchParams({ searchValue, filter })
 
     axios
       .get(`http://localhost:3000/api/products?searchValue=${searchValue}&filter=${filter}`)
@@ -73,9 +78,9 @@ export default function Products() {
             </div>
           </div>
         </>}
-        <Chatbot 
-         products={todos}
-        />
+      <Chatbot
+        products={todos}
+      />
     </div>
   );
 }
