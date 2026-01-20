@@ -5,6 +5,7 @@ import { Quantum } from 'ldrs/react';
 import 'ldrs/react/Quantum.css';
 import { useProducts } from "../contexts/ProductsContext";
 import Chatbot from "../components/Chatbot";
+import { useCart } from "../contexts/CartContext";
 
 
 
@@ -13,6 +14,7 @@ export default function Home() {
     const [latestArrivals, setLatestArrivals] = useState([]);
     const [error, setError] = useState(null);
     const { loading, setLoading } = useProducts()
+    const { added } = useCart();
 
     useEffect(() => {
         const categories = ["scheda-video", "processore", "ram", "ssd", "case", "scheda-madre"];
@@ -48,6 +50,8 @@ export default function Home() {
 
     return (
         <>
+            {added ? <span className="add-popup" >Aggiunto al carrello</span> : ''}
+
             {loading
                 ?
                 <div className="loader_div">

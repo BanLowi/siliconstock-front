@@ -1,6 +1,29 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../contexts/CartContext"
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+
+    const { cart } = useCart();
+    const [cartAmount, setCartAmount] = useState(0)
+
+
+    console.log(cart);
+
+    function getAmount() {
+        let amount = 0
+        cart.forEach(product => {
+            amount += product.quantity
+
+        });
+        console.log(amount);
+
+        setCartAmount(amount)
+
+    }
+
+    useEffect(getAmount, [cart])
+
     return (
         <nav className="navbar">
             <div className="navbar-left">
@@ -17,6 +40,7 @@ export default function Navbar() {
             <div className="navbar-right">
                 <Link to="/products" className="navbar-link">Products</Link>
                 <Link to="/cart" className="navbar-cart-link"><i className="bi bi-cart"></i></Link>
+                <span className="cart-amount" >{cartAmount}</span>
             </div>
         </nav>
     );

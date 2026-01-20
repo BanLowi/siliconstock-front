@@ -11,7 +11,7 @@ export default function DetailPage() {
   const { slug } = useParams();
   const { loading, setLoading } = useProducts();
   const [product, setProduct] = useState({});
-  const { addProd } = useCart();
+  const { addProd, added } = useCart();
   const navigate = useNavigate();
 
   function fetchProduct() {
@@ -56,9 +56,13 @@ export default function DetailPage() {
             <p className="description">{product.description}</p>
 
             <span>{product.price}€</span>
-            <button onClick={() => addProd(product)} className="btn btn-primary">
-              Aggiungi al carrello
-            </button>
+            <div className="add-container" >
+              {added ? <span className="add-popup" >Aggiunto al carrello</span> : ''}
+
+              <button onClick={() => addProd(product)} className="btn btn-primary">
+                Aggiungi al carrello
+              </button>
+            </div>
 
             <p>specifiche tecniche: {product.technical_specs}</p>
           </div>

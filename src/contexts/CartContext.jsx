@@ -4,6 +4,8 @@ const CartContext = createContext();
 
 function CartProvider({ children }) {
 
+    const [added, setAdded] = useState(false)
+
     const [order, setOrder] = useState(() => {
 
         const savedOrder = localStorage.getItem("order")
@@ -49,6 +51,7 @@ function CartProvider({ children }) {
     }
 
     function addProd(product) {
+        setAdded(true)
         setCart((prevProds) => {
             const existingProduct = prevProds.find(
                 (item) => item.id === product.id
@@ -64,6 +67,9 @@ function CartProvider({ children }) {
 
             return [...prevProds, { ...product, quantity: 1 }];
         });
+        setTimeout(() => {
+            setAdded(false)
+        }, 2500);
     }
 
 
@@ -77,7 +83,9 @@ function CartProvider({ children }) {
                 setOrder,
                 addProd,
                 removeProd,
-                reduceProd
+                reduceProd,
+                added,
+                setAdded
             }}>
             {children}
         </CartContext.Provider>

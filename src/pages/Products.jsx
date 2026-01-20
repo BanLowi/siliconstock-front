@@ -6,6 +6,7 @@ import 'ldrs/react/Quantum.css';
 import { useProducts } from "../contexts/ProductsContext";
 import Chatbot from "../components/Chatbot";
 import { useSearchParams } from "react-router";
+import { useCart } from "../contexts/CartContext";
 
 export default function Products() {
 
@@ -15,6 +16,7 @@ export default function Products() {
   const { loading, setLoading } = useProducts();
   const [searchValue, setSearchValue] = useState(searchParams?.get('searchValue') || '')
   const [filter, setFilter] = useState(searchParams?.get('filter') || '')
+  const { added } = useCart();
 
 
   function fetchTodos() {
@@ -71,8 +73,11 @@ export default function Products() {
             </select>
           </div>
 
+          {added ? <span className="add-popup" >Aggiunto al carrello</span> : ''}
+          {/* <span className="add-popup" >Aggiunto al carrello</span> */}
+
           <div>
-            <h1 className="text-uppercase my-3">products</h1>
+            <h1 className="text-uppercase my-3 text-light">products</h1>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
               {todos.map((item) => (
                 <div key={item.id} className="col mb-3">

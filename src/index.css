@@ -33,6 +33,7 @@ body {
   padding: 10px 28px;
   background-color: #1c2630;
   border-bottom: 1px solid #9dd4f0;
+
 }
 
 /* logo */
@@ -63,6 +64,7 @@ body {
 .navbar-right {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .navbar-left {
@@ -103,6 +105,20 @@ body {
   color: #084e77;
   text-decoration: none;
 }
+
+.cart-amount {
+  color: white;
+  background-color: red;
+  font-size: 0.6rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  border-radius: 15px;
+  position: absolute;
+  top: -3px;
+  right: -7px;
+}
+
+
 
 /* search bar */
 .search-input {
@@ -249,6 +265,7 @@ h1 {
       height: 50vh;
       object-fit: contain;
     }
+
   }
 
   .details {
@@ -266,6 +283,17 @@ h1 {
 
   span {
     font-size: 2rem;
+  }
+
+  .add-container {
+    position: relative;
+
+    .add-popup {
+      font-size: 1rem;
+      position: absolute;
+      top: 25%;
+      right: 10%;
+    }
   }
 
   .btn {
@@ -736,4 +764,24 @@ td {
 
 .chat-form {
   box-shadow: none;
+}
+
+/*Add to cart popup*/
+
+main {
+  position: relative;
+
+  .add-popup {
+    color: white;
+    background-color: #0b7fc1;
+    font-size: 2rem !important;
+    padding: 0.3rem 0.5rem;
+    border-radius: 15px;
+    font-size: 1rem;
+    position: fixed;
+    top: 10vh;
+    right: 37vw;
+    z-index: 2;
+  }
+
 }

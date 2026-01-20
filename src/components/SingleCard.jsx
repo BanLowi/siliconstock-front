@@ -3,7 +3,7 @@ import { useCart } from "../contexts/CartContext";
 
 export default function SingleCard({ todo }) {
 
-  const { addProd } = useCart();
+  const { addProd, added } = useCart();
 
   return (
     <>
@@ -29,6 +29,7 @@ export default function SingleCard({ todo }) {
             <button onClick={() => addProd(todo)} className="btn btn-primary">
               Aggiungi al carrello
             </button>
+            {added ? <span className="add-popup" >Aggiunto al carrello</span> : ''}
           </div>
         </div>
       </div>
