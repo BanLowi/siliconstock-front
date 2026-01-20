@@ -1,9 +1,12 @@
 import { Link } from "react-router";
 import { useCart } from "../contexts/CartContext"
+import { useEffect } from "react";
 
 export default function Cart() {
 
     const { cart, addProd, removeProd, reduceProd } = useCart();
+
+    useEffect(() => { localStorage.removeItem("order") }, [])
 
     return (
         <>
@@ -72,7 +75,7 @@ export default function Cart() {
                 )}
 
                 {cart.length > 0 &&
-                    <Link to={`/checkout`}>
+                    <Link to={`/checkout`} className="btn btn-light" >
                         Procedi al checkout
                     </Link>}
 

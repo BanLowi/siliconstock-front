@@ -195,6 +195,40 @@ export default function CheckoutForm() {
           </form>}
       </div>
 
+      <div className="container mt-5">
+        {cart.map((product) => (
+          <div
+            key={product.id}
+            className="d-flex align-items-center justify-content-between py-3 border-bottom"
+          >
+            <div className="flex-grow-1 d-flex">
+
+
+              <div className="me-5 cart-image">
+                <img src={`http://localhost:3000/${product.img}`} alt="" height={100} />
+              </div>
+
+              <div>
+
+                <h4 className="fw-semibold text-white mb-3">
+                  {product.product_name || product.name}
+                </h4>
+
+
+
+                <small className="text-white mx-2">
+                  Quantità: {product.quantity}
+                </small>
+
+
+              </div>
+
+            </div>
+
+          </div>
+        ))}
+      </div>
+
       {/* button to turn prevous page */}
       <div className="mt-4 d-inline-block">
         <button
