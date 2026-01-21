@@ -159,7 +159,7 @@ export default function CheckoutForm() {
           className="btn btn-primary btn-sm px-2"
           onClick={() => navigate(-1)}
         >
-          <i class="bi bi-arrow-bar-left"></i> Torna indietro
+          <i className="bi bi-arrow-bar-left"></i> Torna indietro
         </button>
       </div>
 
