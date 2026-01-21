@@ -12,8 +12,13 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top; */
-  background: #1C2630;
-  background: linear-gradient(180deg, rgba(28, 38, 48, 1) 10%, rgba(17, 109, 132, 1) 51%, rgba(0, 212, 255, 1) 100%);
+  background: #1c2630;
+  background: linear-gradient(
+    180deg,
+    rgba(28, 38, 48, 1) 10%,
+    rgba(17, 109, 132, 1) 51%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
 /* Loader */
@@ -33,7 +38,6 @@ body {
   padding: 10px 28px;
   background-color: #1c2630;
   border-bottom: 1px solid #9dd4f0;
-
 }
 
 /* logo */
@@ -124,8 +128,6 @@ body {
   right: -7px;
 }
 
-
-
 /* search bar */
 .search-input {
   height: 22px;
@@ -147,19 +149,16 @@ h1 {
 
 /* hero*/
 .hero-image {
-  width: 100vw;
+  width: 100%;
+  aspect-ratio: 20 / 9;
   position: relative;
-  margin-inline: calc(50% - 50vw);
-  height: 600px;
   background-image: url("/fotor-2026011412329.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-
-/* Products */
-.products {
+@media screen and (max-width: ) /* Products */ .products {
   padding: 40px 60px;
 }
 
@@ -183,7 +182,9 @@ h1 {
   border-radius: 12px;
   overflow: hidden;
   background-color: #ffffff;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 /* Card hover */
@@ -200,7 +201,6 @@ h1 {
   background-color: #f7f7f7;
   padding: 16px;
 }
-
 
 /* body */
 .card-body {
@@ -264,19 +264,16 @@ h1 {
     min-height: 70vh;
     width: 50%;
 
-
     img {
       padding: 10rem 1rem 0 1rem;
       width: 100%;
       height: 50vh;
       object-fit: contain;
     }
-
   }
 
   .details {
     width: 50%;
-
   }
 
   .title {
@@ -308,7 +305,6 @@ h1 {
 }
 
 .btn-custom {
-
   width: 10vw;
   margin-left: 0rem;
 }
@@ -377,14 +373,15 @@ form {
   width: 30vw;
   min-width: 500px;
   align-self: center;
-  box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
-    0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+  box-shadow:
+    0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
+    0px 2px 5px 0px rgba(50, 50, 93, 0.1),
+    0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
   border-radius: 7px;
   padding: 40px;
   margin-top: auto;
   margin-bottom: auto;
 }
-
 
 #payment-message {
   color: rgb(105, 115, 134);
@@ -400,7 +397,7 @@ form {
 
 /* Buttons and links */
 button {
-  background: #0055DE;
+  background: #0055de;
   font-family: Arial, sans-serif;
   color: #ffffff;
   border-radius: 4px;
@@ -448,13 +445,13 @@ button:disabled {
 .spinner:before,
 .spinner:after {
   position: absolute;
-  content: '';
+  content: "";
 }
 
 .spinner:before {
   width: 10.4px;
   height: 20.4px;
-  background: #0055DE;
+  background: #0055de;
   border-radius: 20.4px 0 0 20.4px;
   top: -0.2px;
   left: -0.2px;
@@ -467,7 +464,7 @@ button:disabled {
 .spinner:after {
   width: 10.4px;
   height: 10.2px;
-  background: #0055DE;
+  background: #0055de;
   border-radius: 0 10.2px 10.2px 0;
   top: -0.1px;
   left: 10.2px;
@@ -488,8 +485,10 @@ button:disabled {
   min-width: 500px;
   min-height: 380px;
   align-self: center;
-  box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
-    0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+  box-shadow:
+    0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
+    0px 2px 5px 0px rgba(50, 50, 93, 0.1),
+    0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
   border-radius: 7px;
   padding: 40px;
   opacity: 0;
@@ -509,7 +508,7 @@ button:disabled {
 
 h2 {
   margin: 0;
-  color: #30313D;
+  color: #30313d;
   text-align: center;
 }
 
@@ -537,13 +536,13 @@ table {
 }
 
 table tbody tr:first-child td {
-  border-top: 1px solid #E6E6E6;
+  border-top: 1px solid #e6e6e6;
   /* Top border */
   padding-top: 10px;
 }
 
 table tbody tr:last-child td {
-  border-bottom: 1px solid #E6E6E6;
+  border-bottom: 1px solid #e6e6e6;
   /* Bottom border */
 }
 
@@ -553,21 +552,21 @@ td {
 
 .TableContent {
   text-align: right;
-  color: #6D6E78;
+  color: #6d6e78;
 }
 
 .TableLabel {
   font-weight: 600;
-  color: #30313D;
+  color: #30313d;
 }
 
 #view-details {
-  color: #0055DE;
+  color: #0055de;
 }
 
 #retry-button {
   text-align: center;
-  background: #0055DE;
+  background: #0055de;
   color: #ffffff;
   border-radius: 4px;
   border: 0;
@@ -596,7 +595,6 @@ td {
 }
 
 @media only screen and (max-width: 600px) {
-
   form,
   #payment-status {
     width: 80vw;
@@ -624,7 +622,6 @@ td {
 }
 
 .cart-image {
-
   img {
     width: 400px;
     height: 200px;
@@ -643,17 +640,26 @@ td {
   justify-content: center;
 }
 
-
-
 .text-color {
   color: #9dd4f0;
 }
 
-
 /*Search bar*/
 
 .btn-search {
-  width: 10%;
+  width: 30%;
+}
+
+@media screen and (min-width: 780px) {
+  .btn-search {
+    width: 13%;
+  }
+}
+
+@media screen and (min-width: 980px) {
+  .btn-search {
+    width: 10%;
+  }
 }
 
 /*User data form*/
@@ -708,7 +714,7 @@ td {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background: #1C2630;
+  background: #1c2630;
   overflow-y: auto;
   border: 2px solid lightblue;
   padding: 10px;
@@ -762,6 +768,18 @@ td {
   margin: 1rem 3rem;
 }
 
+@media screen and (max-width: 500px) {
+  .chat-card-spacing {
+    width: 75% !important;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .chat-card-spacing {
+    width: 69% !important;
+  }
+}
+
 .chat-name {
   color: black;
   text-shadow: 0 0 10px lightblue;
@@ -799,7 +817,6 @@ main {
     right: 37vw;
     z-index: 2;
   }
-
 }
 
 /*Lottie animation*/
