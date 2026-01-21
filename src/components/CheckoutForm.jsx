@@ -8,6 +8,7 @@ import { useCart } from "../contexts/CartContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
@@ -15,6 +16,7 @@ export default function CheckoutForm() {
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   //toggle form show
   const [showForm, setShowForm] = useState('user-data')
@@ -107,6 +109,11 @@ export default function CheckoutForm() {
 
   async function handleUserDataSubmit(e) {
     e.preventDefault();
+
+    if (!acceptTerms) {
+      setFormError("Devi accettare i termini e condizioni per continuare.");
+      return;
+    }
 
     let total = 0
 
@@ -218,7 +225,21 @@ export default function CheckoutForm() {
                       value={shipping_address} onChange={e => setShippingAddress(e.target.value)} />
                   </div>
 
-                  <button type="submit" className="btn btn-primary">Conferma</button>
+                  <div className="form-check mt-4">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="acceptTerms"
+                      checked={acceptTerms}
+                      onChange={(e) => setAcceptTerms(e.target.checked)}
+                    />
+                    <label className="form-check-label text-white" htmlFor="acceptTerms">
+                      <a>Accetto i termini e condizioni *</a>
+                    </label>
+                  </div>
+
+
+                  <button type="submit" className="btn btn-primary" disabled={!acceptTerms}>Conferma</button>
                 </form>
               </div>}
             {showForm === 'payment' &&
