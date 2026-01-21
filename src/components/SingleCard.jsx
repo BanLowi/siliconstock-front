@@ -29,7 +29,6 @@ export default function SingleCard({ todo }) {
             <button onClick={() => addProd(todo)} className="btn btn-primary">
               Aggiungi al carrello
             </button>
-            {added ? <span className="add-popup" >Aggiunto al carrello</span> : ''}
           </div>
         </div>
       </div>

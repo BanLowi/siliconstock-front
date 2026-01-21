@@ -15,7 +15,7 @@ export default function DetailPage() {
   const { addProd, added } = useCart();
   const navigate = useNavigate();
 
-  
+
 
   function fetchProduct() {
     setLoading(true)
@@ -26,7 +26,7 @@ export default function DetailPage() {
         setProduct(res.data)
         console.log(res.data);
 
-      }) .catch(() => setProduct(undefined))
+      }).catch(() => setProduct(undefined))
       .finally(() => setTimeout(setLoading(false), 1000))
   }
 
@@ -38,7 +38,7 @@ export default function DetailPage() {
 
   console.log(product);
 
-  if(product === undefined) {
+  if (product === undefined) {
     return <Navigate to="*" />
   }
 
