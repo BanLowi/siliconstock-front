@@ -109,7 +109,7 @@ export default function Cart() {
                 </div>
 
 
-                <div className="align-self-center ms-3 btn-position">
+                <div className="align-self-center ms-3">
                   <button
                     className="btn btn-danger btn-remove"
                     onClick={() => removeProd(product)}
@@ -123,7 +123,6 @@ export default function Cart() {
         )}
 
         {cart.length > 0 && (
-<<<<<<< HEAD
           <div className="mt-4">
             <h4 className="text-white">
               Totale:{discountedTotal}€
@@ -135,41 +134,16 @@ export default function Cart() {
                 <button type="submit" className="btn-discount"><i className="bi bi-bag-check"></i></button>
               </div>
             </form>
-=======
-          <div className="mt-4 d-flex justify-content-between align-items-start recap">
-
-            {/* SINISTRA: totale + sconto */}
-            <div>
-              <h4 className="text-white mb-3">
-                Totale: {discountedTotal}€
-              </h4>
-
-              <form onSubmit={handleSubmit}>
-                <div className="input-group d-flex">
-                  <input
-                    className="discount-code form-control"
-                    type="text"
-                    placeholder="Codice sconto"
-                    onChange={e => setDiscountCode(e.target.value)}
-                  />
-                  <button type="submit" className="btn-discount">
-                    <i className="bi bi-bag-check"></i>
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            {/* DESTRA: checkout */}
-            <div className="align-self-center">
-              <Link to="/checkout" className="btn btn-light">
-                Procedi al checkout
-              </Link>
-            </div>
-
->>>>>>> 42e21b3ca8143d3e5367dc5a47156b8a5a6f0185
           </div>
         )}
 
+        {cart.length > 0 &&
+          <div>
+            <Link to="/checkout" className="btn btn-light">
+              Procedi al checkout
+            </Link>
+          </div>
+        }
       </div>
     </>
   );

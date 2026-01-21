@@ -3,18 +3,15 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function DefaultLayout() {
-
-
-
     return (
-        <>
+        <div className="app">
             <Navbar />
-            <main>
+            <main className="content">
 
                 <Outlet />
 
             </main>
             <Footer />
-        </>
+        </div>
     );
 }
