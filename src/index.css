@@ -53,6 +53,12 @@ body {
   width: auto;
 }
 
+@media screen and (max-width: 580px) {
+  .navbar-logo-text-img {
+    display: none;
+  }
+}
+
 .navbar-logo-text {
   font-size: 20px;
   font-weight: 700;
