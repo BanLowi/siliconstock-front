@@ -643,6 +643,25 @@ td {
   color: #9dd4f0;
 }
 
+.recap {
+
+  .discount-code {
+    width: 125px;
+  }
+
+
+  form {
+    padding: 0;
+    width: 200px;
+    min-width: 200px;
+    align-self: flex-end;
+
+    .btn-discount {
+      padding-right: 2rem;
+    }
+  }
+}
+
 
 /*Search bar*/
 
