@@ -68,21 +68,19 @@ export default function Cart() {
         )}
 
         {cart.length > 0 && (
-          <div className="mt-4">
-            <h4 className="text-white">
+          <div className="mt-4 d-flex justify-content-between align-items-center">
+            <h4 className="text-white m-0">
               Totale:{" "}
               {cart
                 .reduce((tot, p) => tot + p.price * p.quantity, 0)
                 .toFixed(2)}{" "}
               €
             </h4>
-          </div>
-        )}
 
-        {cart.length > 0 && (
-          <Link to={`/checkout`} className="btn btn-light">
-            Procedi al checkout
-          </Link>
+            <Link to="/checkout" className="btn btn-light">
+              Procedi al checkout
+            </Link>
+          </div>
         )}
       </div>
     </>
