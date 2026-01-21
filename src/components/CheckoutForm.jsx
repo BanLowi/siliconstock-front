@@ -235,7 +235,7 @@ export default function CheckoutForm() {
               </form>}
           </div>
 
-          <div className="container mt-5 mx-auto col-md-5 col-sm-12 card bg-transparent">
+          <div className="container mt-5 mx-auto col-md-5 col-sm-12 card bg-transparent py-2">
             {cart.map((product) => (
               <div
                 key={product.id}

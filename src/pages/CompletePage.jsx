@@ -130,7 +130,7 @@ export default function CompletePage() {
         </div>
 
 
-        <div className="container mt-5">
+        <div className="container mt-5 card bg-transparent py-2">
           <h1 className="text-light">Prodotti</h1>
           {cart.map((product) => (
             <div

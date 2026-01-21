@@ -68,9 +68,9 @@ export default function Cart() {
           cart.map((product) => (
             <div
               key={product.id}
-              className="d-flex align-items-center justify-content-between py-3 border-bottom"
+              className="align-items-center justify-content-between py-3 border-bottom row"
             >
-              <div id="cart-section" className="flex-grow-1 d-flex justify-content-between">
+              <div id="cart-section" className="flex-grow-1 d-flex justify-content-between col-sm-12 col-md-4">
                 <div className="me-5 mb-3 cart-image">
                   <img
                     src={`http://localhost:3000/${product.img}`}
@@ -78,11 +78,13 @@ export default function Cart() {
                   />
                 </div>
 
-                <div className="d-flex">
+                <div className="text-centering">
+
+                  <h4 className="fw-semibold text-white mb-3">
+                    {product.product_name || product.name}
+                  </h4>
+
                   <div>
-                    <h4 className="fw-semibold text-white mb-3">
-                      {product.product_name || product.name}
-                    </h4>
 
                     <button
                       className="btn btn-outline-light cart-btn"
@@ -101,15 +103,19 @@ export default function Cart() {
                     >
                       <i className="bi bi-cart-plus cart-icon" />
                     </button>
+
                   </div>
-                  <div className="align-self-center ms-3">
-                    <button
-                      className="btn btn-danger btn-remove"
-                      onClick={() => removeProd(product)}
-                    >
-                      <i className="bi bi-x-lg" />
-                    </button>
-                  </div>
+
+                </div>
+
+
+                <div className="align-self-center ms-3 btn-position">
+                  <button
+                    className="btn btn-danger btn-remove"
+                    onClick={() => removeProd(product)}
+                  >
+                    <i className="bi bi-x-lg" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -122,7 +128,7 @@ export default function Cart() {
               Totale:{discountedTotal}€
             </h4>
             <form onSubmit={handleSubmit}>
-              <div className="input-group  d-flex">
+              <div className="input-group d-flex">
                 <input className="discount-code form-control" type="text" placeholder="Codice sconto"
                   onChange={e => setDiscountCode(e.target.value)} />
                 <button type="submit" className="btn-discount"><i className="bi bi-bag-check"></i></button>

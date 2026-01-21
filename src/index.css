@@ -655,6 +655,31 @@ td {
   color: #9dd4f0;
 }
 
+.text-centering {
+
+  width: 40%;
+}
+
+@media screen and (max-width: 768px) {
+
+  .text-centering {
+
+    width: 100%;
+  }
+
+  #cart-section {
+    position: relative;
+  }
+
+  .btn-position {
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+}
+
 
 
 .recap {
