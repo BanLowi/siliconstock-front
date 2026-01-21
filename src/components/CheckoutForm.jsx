@@ -121,23 +121,39 @@ export default function CheckoutForm() {
 
     let discountValueLocal
 
-    await axios.get(`http://localhost:3000/api/orders/discount-code?id=${discountCodeId}`)
-      .then(res => {
-        console.log(res.data);
-        setDiscountValue(res.data)
-        discountValueLocal = res.data
-      })
+    let newOrder
 
-    const newOrder = {
-      id: Date.now(),
-      first_name,
-      last_name,
-      phone,
-      email,
-      shipping_address,
-      total_amount: total - (total * discountValueLocal[0].discount_value / 100),
-      products: cart,
-      discount_code_id: discountCodeId
+    if (discountCodeId !== 0) {
+      await axios.get(`http://localhost:3000/api/orders/discount-code?id=${discountCodeId}`)
+        .then(res => {
+          console.log(res.data);
+          setDiscountValue(res.data)
+          discountValueLocal = res.data
+        })
+
+      newOrder = {
+        id: Date.now(),
+        first_name,
+        last_name,
+        phone,
+        email,
+        shipping_address,
+        total_amount: total - (total * discountValueLocal[0].discount_value / 100),
+        products: cart,
+        discount_code_id: discountCodeId
+      }
+    } else if (discountCodeId === 0) {
+
+      newOrder = {
+        id: Date.now(),
+        first_name,
+        last_name,
+        phone,
+        email,
+        shipping_address,
+        total_amount: total,
+        products: cart
+      }
     }
 
 
