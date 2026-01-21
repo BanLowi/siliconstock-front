@@ -128,6 +128,12 @@ body {
   right: -7px;
 }
 
+@media screen and (max-width: 800px) {
+  #cart-section {
+    flex-direction: column !important;
+  }
+}
+
 /* search bar */
 .search-input {
   height: 22px;
@@ -623,8 +629,8 @@ td {
 
 .cart-image {
   img {
-    width: 400px;
-    height: 200px;
+    width: 200px;
+    height: 100px;
     object-fit: contain;
   }
 }
