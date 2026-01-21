@@ -78,14 +78,23 @@ export default function Products() {
 
           <div>
             <h1 className="text-uppercase my-3 text-light">products</h1>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-              {todos.map((item) => (
-                <div key={item.id} className="col mb-3">
-                  <SingleCard todo={item} />
+            {
+              todos.length === 0 ? (
+                <div className="text-center">
+                  <h3 className="text-light">Nessun prodotto trovato</h3>
                 </div>
-              ))}
-            </div>
+              ) : (
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                  {todos.map((item) => (
+                    <div key={item.id} className="col mb-3">
+                      <SingleCard todo={item} />
+                    </div>
+                  ))}
+                </div>
+              )
+            }
           </div>
+
         </>}
       <Chatbot
         products={todos}
