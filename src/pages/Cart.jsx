@@ -1,9 +1,58 @@
 import { Link } from "react-router";
 import { useCart } from "../contexts/CartContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Cart() {
-  const { cart, addProd, removeProd, reduceProd } = useCart();
+
+  const { cart, addProd, removeProd, reduceProd, setDiscountCodeId } = useCart();
+
+  const [discountCode, setDiscountCode] = useState('')
+  const [discountValue, setDiscountValue] = useState(0)
+  const [discountedTotal, setDisconutedTotal] = useState(cart.reduce((tot, p) => tot + p.price * p.quantity, 0).toFixed(2))
+
+  let total
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    console.log(discountCode.toUpperCase());
+
+    let localDiscountId
+
+    if (discountCode.toUpperCase() === 'TECH10') {
+      setDiscountCodeId(1)
+      localDiscountId = 1
+    } else if (discountCode.toUpperCase() === 'SPRING25') {
+      setDiscountCodeId(2)
+      localDiscountId = 2
+    } else if (discountCode.toUpperCase() === 'MEGA50') {
+      setDiscountCodeId(3)
+      localDiscountId = 3
+    }
+
+    await axios.get(`http://localhost:3000/api/orders/discount-code?id=${localDiscountId}`)
+      .then(res => {
+        console.log(res.data[0].discount_value);
+        console.log(res.data);
+
+        setDiscountValue(res.data[0].discount_value)
+
+      })
+
+    total = cart.reduce((tot, p) => tot + p.price * p.quantity, 0).toFixed(2)
+
+    console.log(total);
+
+
+
+  }
+
+  useEffect(() => {
+    total = cart.reduce((tot, p) => tot + p.price * p.quantity, 0).toFixed(2)
+
+    if (discountValue !== 0) setDisconutedTotal(Number(total) - (Number(total) * Number(discountValue) / 100))
+  }, [discountValue])
 
   useEffect(() => {
     localStorage.removeItem("order");
@@ -70,12 +119,15 @@ export default function Cart() {
         {cart.length > 0 && (
           <div className="mt-4">
             <h4 className="text-white">
-              Totale:{" "}
-              {cart
-                .reduce((tot, p) => tot + p.price * p.quantity, 0)
-                .toFixed(2)}{" "}
-              €
+              Totale:{discountedTotal}€
             </h4>
+            <form onSubmit={handleSubmit}>
+              <div className="input-group  d-flex">
+                <input className="discount-code form-control" type="text" placeholder="Codice sconto"
+                  onChange={e => setDiscountCode(e.target.value)} />
+                <button type="submit" className="btn-discount"><i className="bi bi-bag-check"></i></button>
+              </div>
+            </form>
           </div>
         )}
 

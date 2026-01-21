@@ -119,11 +119,13 @@ export default function CheckoutForm() {
 
     console.log(discountCodeId);
 
+    let discountValueLocal
+
     await axios.get(`http://localhost:3000/api/orders/discount-code?id=${discountCodeId}`)
       .then(res => {
         console.log(res.data);
         setDiscountValue(res.data)
-
+        discountValueLocal = res.data
       })
 
     const newOrder = {
@@ -133,7 +135,7 @@ export default function CheckoutForm() {
       phone,
       email,
       shipping_address,
-      total_amount: total - (total * discountValue[0].discount_value / 100),
+      total_amount: total - (total * discountValueLocal[0].discount_value / 100),
       products: cart,
       discount_code_id: discountCodeId
     }
