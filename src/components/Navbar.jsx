@@ -40,7 +40,7 @@ export default function Navbar() {
             <div className="navbar-right">
                 <Link to="/products" className="navbar-link">Products</Link>
                 <Link to="/cart" className="navbar-cart-link"><i className="bi bi-cart"></i></Link>
-                <span className="cart-amount" >{cartAmount}</span>
+                <Link to="/cart" className="cart-amount" >{cartAmount}</Link>
             </div>
         </nav>
     );
