@@ -164,9 +164,10 @@ h1 {
   background-position: center;
 }
 
-@media screen and (max-width: ) /* Products */ .products {
+/* @media screen and (max-width: ) .products{
   padding: 40px 60px;
-}
+} */
+
 
 .products h2 {
   font-size: 28px;
@@ -648,6 +649,27 @@ td {
 
 .text-color {
   color: #9dd4f0;
+}
+
+
+
+.recap {
+
+  .discount-code {
+    width: 125px;
+  }
+
+
+  form {
+    padding: 0;
+    width: 200px;
+    min-width: 200px;
+    align-self: flex-end;
+
+    .btn-discount {
+      padding-right: 2rem;
+    }
+  }
 }
 
 /*Search bar*/

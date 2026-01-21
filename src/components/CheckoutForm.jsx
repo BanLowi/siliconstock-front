@@ -59,14 +59,14 @@ export default function CheckoutForm() {
 
   //User data form logic
 
-  const { cart, order, setOrder } = useCart();
+  const { cart, order, setOrder, discountCodeId } = useCart();
 
   const [first_name, setFirstName] = useState('')
   const [last_name, setLastName] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [shipping_address, setShippingAddress] = useState('')
-  // const [discountCode, setDiscountCode] = useState('')
+  const [discountValue, setDiscountValue] = useState(0)
 
   const [formError, setFormError] = useState('')
 
@@ -105,7 +105,7 @@ export default function CheckoutForm() {
 
   }
 
-  function handleUserDataSubmit(e) {
+  async function handleUserDataSubmit(e) {
     e.preventDefault();
 
     let total = 0
@@ -117,6 +117,15 @@ export default function CheckoutForm() {
 
     })
 
+    console.log(discountCodeId);
+
+    await axios.get(`http://localhost:3000/api/orders/discount-code?id=${discountCodeId}`)
+      .then(res => {
+        console.log(res.data);
+        setDiscountValue(res.data)
+
+      })
+
     const newOrder = {
       id: Date.now(),
       first_name,
@@ -124,9 +133,9 @@ export default function CheckoutForm() {
       phone,
       email,
       shipping_address,
-      total_amount: total,
+      total_amount: total - (total * discountValue[0].discount_value / 100),
       products: cart,
-      discount_code_id: 2
+      discount_code_id: discountCodeId
     }
 
 
@@ -150,7 +159,7 @@ export default function CheckoutForm() {
           className="btn btn-primary btn-sm px-2"
           onClick={() => navigate(-1)}
         >
-          <i class="bi bi-arrow-bar-left"></i> Torna indietro
+          <i className="bi bi-arrow-bar-left"></i> Torna indietro
         </button>
       </div>
 

@@ -6,6 +6,8 @@ function CartProvider({ children }) {
 
     const [added, setAdded] = useState(false)
 
+    const [discountCodeId, setDiscountCodeId] = useState('')
+
     const [order, setOrder] = useState(() => {
 
         const savedOrder = localStorage.getItem("order")
@@ -85,7 +87,9 @@ function CartProvider({ children }) {
                 removeProd,
                 reduceProd,
                 added,
-                setAdded
+                setAdded,
+                discountCodeId,
+                setDiscountCodeId
             }}>
             {children}
         </CartContext.Provider>
