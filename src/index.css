@@ -503,6 +503,8 @@ button:disabled {
   animation: fadeInAnimation 1s ease forwards;
   margin-top: auto;
   margin-bottom: auto;
+  background-color: white;
+  margin-top: 1rem;
 }
 
 #status-icon {

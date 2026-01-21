@@ -63,7 +63,7 @@ export default function Products() {
             </div>
             <select class="form-select w-25" aria-label="Select filter"
               onChange={e => setFilter(e.target.value)}>
-              <option value='' >Filtra per</option>
+              <option value='' >Ordina per</option>
               <option value="asc">Prezzo crescente</option>
               <option value="desc">Prezzo decrescente</option>
               <option value="name-asc">Per nome A-Z</option>

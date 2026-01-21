@@ -154,6 +154,7 @@ export default function CheckoutForm() {
 
   return (
     <>
+
       {/* button to turn prevous page */}
       <div className="mt-4 ms-5 d-inline-block">
         <button
@@ -165,92 +166,95 @@ export default function CheckoutForm() {
         </button>
       </div>
 
-      <div className="d-flex justify-content-center align-items-center">
-        {showForm === 'user-data' &&
-          <div>
-            <form className="user-form " onSubmit={handleUserDataSubmit}>
-              <span>I campi che presentano * sono obbligatori</span>
-              {formError !== '' && <p >{formError}</p>}
-              <div className="mb-3 mt-4">
-                <label htmlFor="name" className="form-label">Nome *</label>
-                <input type="text" className="form-control" id="name"
-                  value={first_name} onChange={e => setFirstName(e.target.value)} />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="surname" className="form-label">Cognome *</label>
-                <input type="text" className="form-control" id="surname"
-                  value={last_name} onChange={e => setLastName(e.target.value)} />
-              </div>
-              <div className="mb-3">
-                <label className="form-label" htmlFor="phone">Numero di telefono *</label>
-                <input type="text" className="form-control" id="phone"
-                  value={phone} onChange={e => setPhone(e.target.value)} />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email *</label>
-                <input type="email" className="form-control" id="email"
-                  value={email} onChange={e => setEmail(e.target.value)} />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="shipping-address" className="form-label">Indirizzo di spedizione *</label>
-                <input type="text" className="form-control" id="shipping-address"
-                  value={shipping_address} onChange={e => setShippingAddress(e.target.value)} />
-              </div>
+      <div className="container">
 
-              {/* <div className="mb-3">
-          <label className="form-label" htmlFor="discount-code">Codice sconto</label>
-          <input type="text" className="form-control" id="discount-code" />
-        </div> */}
-              <button type="submit" className="btn btn-primary">Conferma</button>
-            </form>
-          </div>}
-        {showForm === 'payment' &&
-          <form id="payment-form" onSubmit={handleSubmit}>
+        <div className="row justify-content-between">
 
-            <PaymentElement id="payment-element" options={paymentElementOptions} />
-            <button disabled={isLoading || !stripe || !elements} id="submit">
-              <span id="button-text">
-                {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-              </span>
-            </button>
-            {/* Show any error or success messages */}
-            {message && <div id="payment-message">{message}</div>}
-          </form>}
-      </div>
-
-      <div className="container mt-5">
-        {cart.map((product) => (
-          <div
-            key={product.id}
-            className="d-flex align-items-center justify-content-between py-3 border-bottom"
-          >
-            <div className="flex-grow-1 d-flex">
-
-
-              <div className="me-5 cart-image">
-                <img src={`http://localhost:3000/${product.img}`} alt="" height={100} />
-              </div>
-
+          <div className="d-flex justify-content-center align-items-center col-md-5 col-sm-12">
+            {showForm === 'user-data' &&
               <div>
+                <form className="user-form " onSubmit={handleUserDataSubmit}>
+                  <span>I campi che presentano * sono obbligatori</span>
+                  {formError !== '' && <p >{formError}</p>}
+                  <div className="mb-3 mt-4">
+                    <label htmlFor="name" className="form-label">Nome *</label>
+                    <input type="text" className="form-control" id="name"
+                      value={first_name} onChange={e => setFirstName(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="surname" className="form-label">Cognome *</label>
+                    <input type="text" className="form-control" id="surname"
+                      value={last_name} onChange={e => setLastName(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label" htmlFor="phone">Numero di telefono *</label>
+                    <input type="text" className="form-control" id="phone"
+                      value={phone} onChange={e => setPhone(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email *</label>
+                    <input type="email" className="form-control" id="email"
+                      value={email} onChange={e => setEmail(e.target.value)} />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="shipping-address" className="form-label">Indirizzo di spedizione *</label>
+                    <input type="text" className="form-control" id="shipping-address"
+                      value={shipping_address} onChange={e => setShippingAddress(e.target.value)} />
+                  </div>
 
-                <h4 className="fw-semibold text-white mb-3">
-                  {product.product_name || product.name}
-                </h4>
+                  <button type="submit" className="btn btn-primary">Conferma</button>
+                </form>
+              </div>}
+            {showForm === 'payment' &&
+              <form id="payment-form" onSubmit={handleSubmit}>
+
+                <PaymentElement id="payment-element" options={paymentElementOptions} />
+                <button disabled={isLoading || !stripe || !elements} id="submit">
+                  <span id="button-text">
+                    {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+                  </span>
+                </button>
+                {/* Show any error or success messages */}
+                {message && <div id="payment-message">{message}</div>}
+              </form>}
+          </div>
+
+          <div className="container mt-5 mx-auto col-md-5 col-sm-12 card bg-transparent">
+            {cart.map((product) => (
+              <div
+                key={product.id}
+                className="d-flex align-items-center justify-content-between py-3 border-bottom"
+              >
+                <div className="flex-grow-1 d-flex">
+
+
+                  <div className="me-5 cart-image">
+                    <img src={`http://localhost:3000/${product.img}`} alt="" height={100} />
+                  </div>
+
+                  <div>
+
+                    <h4 className="fw-semibold text-white mb-3">
+                      {product.product_name || product.name}
+                    </h4>
 
 
 
-                <small className="text-white mx-2">
-                  Quantità: {product.quantity}
-                </small>
+                    <small className="text-white mx-2">
+                      Quantità: {product.quantity}
+                    </small>
 
+
+                  </div>
+
+                </div>
 
               </div>
-
-            </div>
-
+            ))}
           </div>
-        ))}
+        </div>
       </div>
+
 
 
 
