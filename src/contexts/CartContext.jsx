@@ -6,7 +6,7 @@ function CartProvider({ children }) {
 
     const [added, setAdded] = useState(false)
 
-    const [discountCodeId, setDiscountCodeId] = useState('')
+    const [discountCodeId, setDiscountCodeId] = useState(0)
 
     const [order, setOrder] = useState(() => {
 
