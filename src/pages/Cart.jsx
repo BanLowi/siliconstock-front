@@ -131,11 +131,13 @@ export default function Cart() {
           </div>
         )}
 
-        {cart.length > 0 && (
-          <Link to={`/checkout`} className="btn btn-light">
-            Procedi al checkout
-          </Link>
-        )}
+        {cart.length > 0 &&
+          <div>
+            <Link to="/checkout" className="btn btn-light">
+              Procedi al checkout
+            </Link>
+          </div>
+        }
       </div>
     </>
   );
