@@ -331,8 +331,12 @@ h1 {
 }
 
 .btn-custom {
-  width: 10vw;
+  width: 20vw;
   margin-left: 0rem;
+}
+
+.btn-add-custom {
+  width: 10vh !important;
 }
 
 /* Footer */
