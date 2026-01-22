@@ -925,7 +925,7 @@ main {
   height: 100vh;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .hero-image {
     display: none;
   }
