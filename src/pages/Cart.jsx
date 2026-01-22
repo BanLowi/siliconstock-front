@@ -48,11 +48,14 @@ export default function Cart() {
 
   }
 
+
   useEffect(() => {
     total = cart.reduce((tot, p) => tot + p.price * p.quantity, 0).toFixed(2)
 
     if (discountValue !== 0) setDisconutedTotal(Number(total) - (Number(total) * Number(discountValue) / 100))
-  }, [discountValue])
+    if (discountValue === 0) setDisconutedTotal(total)
+  }, [discountValue, cart])
+
 
   useEffect(() => {
     localStorage.removeItem("order");
@@ -83,6 +86,20 @@ export default function Cart() {
                   <h4 className="fw-semibold text-white mb-3">
                     {product.product_name || product.name}
                   </h4>
+
+                  {(() => {
+                    const price = Number(product.price);
+                    const qty = Number(product.quantity) || 0;
+                    const hasValidPrice = Number.isFinite(price);
+
+                    return (
+                      <>
+                        <small className="text-white d-block mb-2">
+                          Totale: {hasValidPrice ? `${(price * qty).toFixed(2)}€` : "N/D"}
+                        </small>
+                      </>
+                    );
+                  })()}
 
                   <div>
 
