@@ -99,8 +99,8 @@ export default function CompletePage() {
   return (
     <>
       <div className="complete-container" >
-        <div className="d-flex container justify-content-evenly align-items-center"  >
-          <div id="payment-status">
+        <div className="row container justify-content-evenly align-items-center row-cols-4"  >
+          <div id="payment-status" className="col">
             <div id="status-icon" style={{ backgroundColor: STATUS_CONTENT_MAP[status].iconColor }}>
               {STATUS_CONTENT_MAP[status].icon}
             </div>
@@ -124,13 +124,13 @@ export default function CompletePage() {
           <div id="order-data ">
             <h2 className="text-light mb-5" >Ordine n.{order.id}</h2>
             <h4 className="text-light mb-5">Destinatario: {order.first_name} {order.last_name}</h4>
-            <h4 className="text-light mb-5">Totale: {order.total_amount.toFixed(2)} </h4>
+            <h4 className="text-light mb-5">Totale: {order.total_amount.toFixed(2)}€ </h4>
           </div>
 
         </div>
 
 
-        <div className="container mt-5 card bg-transparent py-2">
+        <div className="container mt-5 card bg-transparent py-2 col">
           <h1 className="text-light">Prodotti</h1>
           {cart.map((product) => (
             <div

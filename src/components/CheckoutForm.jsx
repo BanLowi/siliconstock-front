@@ -193,7 +193,7 @@ export default function CheckoutForm() {
 
         <div className="row justify-content-between align-items-start">
 
-          <div className="d-flex justify-content-center align-items-center col-md-5 col-sm-12">
+          <div className="d-flex justify-content-center align-items-center col-md-12 col-sm-12">
             {showForm === 'user-data' &&
               <div>
                 <form className="user-form " onSubmit={handleUserDataSubmit}>
@@ -256,7 +256,7 @@ export default function CheckoutForm() {
               </form>}
           </div>
 
-          <div className="container mt-5 mx-auto col-md-5 col-sm-12 card bg-transparent py-2">
+          <div className="container mt-5 mx-auto col-md-12 col-sm-12 card bg-transparent py-2">
             {cart.map((product) => (
               <div
                 key={product.id}
