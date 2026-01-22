@@ -80,7 +80,7 @@ export default function DetailPage() {
               <div className="add-container" >
                 {added ? <span className="add-popup" >Aggiunto al carrello</span> : ''}
 
-                <button onClick={() => addProd(product)} className="btn btn-primary">
+                <button onClick={() => addProd(product)} className="btn btn-primary btn-add-custom">
                   Aggiungi al carrello
                 </button>
               </div>
