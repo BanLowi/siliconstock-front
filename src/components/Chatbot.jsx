@@ -58,15 +58,13 @@ export default function Chatbot({ products }) {
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
-                  className={`chat-bubble ${
-                    msg.author === "user" ? "user" : "ai"
-                  }`}
+                  className={`chat-bubble ${msg.author === "user" ? "user" : "ai"
+                    }`}
                 >
                   <div className="chat-meta">
                     <span
-                      className={`chat-author ${
-                        msg.author === "user" ? "user" : "ai"
-                      }`}
+                      className={`chat-author ${msg.author === "user" ? "user" : "ai"
+                        }`}
                     >
                       {msg.author === "user" ? "Tu" : "FABRIZIO"}
                     </span>
@@ -80,25 +78,24 @@ export default function Chatbot({ products }) {
               ))}
             </div>
           </div>
+          <div className={`d-flex mt-3 ${chatOpen ? "d-flex" : "d-none"}`}>
+            <form
+              type="submit"
+              className="chat-form d-flex p-0 ps-3 mb-3"
+              onSubmit={handleSubmit}
+            >
+              <textarea
+                className="form-control rounded-pill chat-select w-75 "
+                placeholder="Chat"
+                value={message}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                }}
+              />
+            </form>
+          </div>
         </div>
 
-        <div className={`d-flex mt-3 ${chatOpen ? "d-flex" : "d-none"}`}>
-          <form
-            type="submit"
-            className="chat-form d-flex"
-            onSubmit={handleSubmit}
-          >
-            <input
-              type="text"
-              className="form-control rounded-pill chat-select"
-              placeholder="Chat"
-              value={message}
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
-            />
-          </form>
-        </div>
 
         <div className="chat-button-spacing z-3">
           <button
