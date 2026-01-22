@@ -872,6 +872,18 @@ td {
   box-shadow: none;
 }
 
+#input-chat {
+ width: 55% !important;
+ border-top-right-radius: 0 !important;
+ border-bottom-right-radius: 0 !important;
+}
+
+#button-chat {
+ width: 20% !important;
+ border-radius: 0 30px 30px 0 !important;
+
+}
+
 /*Add to cart popup*/
 
 main {
