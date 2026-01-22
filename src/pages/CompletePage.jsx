@@ -124,7 +124,7 @@ export default function CompletePage() {
           <div id="order-data ">
             <h2 className="text-light mb-5" >Ordine n.{order.id}</h2>
             <h4 className="text-light mb-5">Destinatario: {order.first_name} {order.last_name}</h4>
-            <h4 className="text-light mb-5">Totale: {order.total_amount.toFixed(2)}€ </h4>
+            <h4 className="text-light mb-5">Totale: {order.total_amount.toFixed(2)} </h4>
           </div>
 
         </div>
