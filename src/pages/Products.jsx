@@ -56,7 +56,7 @@ export default function Products() {
                 type="search" className="form-control w-50"
                 placeholder="Cerca" aria-label="Search"
                 aria-describedby="basic-addon2" />
-              <button class="btn btn-outline-secondary btn-search" type="button" id="button-addon2"
+              <button className="btn btn-outline-secondary btn-search" type="button" id="button-addon2"
                 onClick={fetchTodos}>
                 <i className="bi bi-search"></i>
               </button>

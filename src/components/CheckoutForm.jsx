@@ -191,7 +191,7 @@ export default function CheckoutForm() {
 
       <div className="container">
 
-        <div className="row justify-content-between">
+        <div className="row justify-content-between align-items-start">
 
           <div className="d-flex justify-content-center align-items-center col-md-5 col-sm-12">
             {showForm === 'user-data' &&
